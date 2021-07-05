@@ -22,9 +22,7 @@ public class Employment {
     
     EmployerProfile employer;
     public Employment(String j){
-        
-        ArrayList relevantcourseoffers = new ArrayList();
-        
+        ArrayList relevantcourseoffers = new ArrayList();    
     }
 
 }

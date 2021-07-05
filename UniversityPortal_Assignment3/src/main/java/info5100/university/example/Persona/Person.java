@@ -12,6 +12,8 @@ package info5100.university.example.Persona;
 public class Person {
     
     String id;
+    String password;
+    String fullName;
     public Person (String id){
         
         this.id = id;
@@ -20,7 +22,31 @@ public class Person {
         return id;
     }
 
-        public boolean isMatch(String id){
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public boolean isMatch(String id){
         if(getPersonId().equals(id)) return true;
         return false;
     }

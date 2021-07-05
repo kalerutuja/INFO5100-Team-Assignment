@@ -8,6 +8,7 @@ package info5100.university.example.University;
 import info5100.university.example.College.College;
 import info5100.university.example.Department.Department;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -62,6 +63,12 @@ public class University {
         for(College c : collegeList) {
             c.printAllTeacherRatingsBySemester(semester);
         }
+    }
+
+    public List<Department> getAllDepartments() {
+        List<Department> departments = new ArrayList<>();
+        collegeList.forEach(col -> departments.addAll(col.getDepartmentList()));
+        return departments;
     }
 
     
