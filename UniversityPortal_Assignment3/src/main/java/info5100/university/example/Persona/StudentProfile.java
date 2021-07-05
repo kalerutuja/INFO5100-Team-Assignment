@@ -8,7 +8,7 @@ package info5100.university.example.Persona;
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseSchedule.CourseLoad;
 import info5100.university.example.Department.Degree;
-import info5100.university.example.Persona.EmploymentHistory.EmploymentHistroy;
+import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
 
 /**
  *
@@ -18,14 +18,14 @@ public class StudentProfile {
 
     Person person;
     Transcript transcript;
-    EmploymentHistroy employmenthistory;
+    EmploymentHistory employmenthistory;
     Degree degree;
 
     public StudentProfile(Person p) {
 
         person = p;
         transcript = new Transcript(this);
-        employmenthistory = new EmploymentHistroy();
+        employmenthistory = new EmploymentHistory();
     }
 
     public boolean isMatch(String id) {

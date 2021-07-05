@@ -8,6 +8,7 @@ package info5100.university.example.College;
 import info5100.university.example.CourseSchedule.CourseSchedule;
 import info5100.university.example.Department.Department;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -45,10 +46,15 @@ public class College {
         System.out.println("\tTotal revenue(in dollars): " + this.calculateRevenuesBySemester(semester));
     }
 
+    public ArrayList<Department> getDepartmentList() {
+        return departmentList;
+    }
+
     public void printAllTeacherRatingsBySemester(String semester) {
         System.out.println("\tCollege:" + name);
         for(Department d: departmentList){
             d.printAllTeacherRatingsBySemester(semester);
         }
     }
+
 }

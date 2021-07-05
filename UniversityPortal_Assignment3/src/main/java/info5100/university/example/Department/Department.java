@@ -17,6 +17,7 @@ import info5100.university.example.Persona.StudentDirectory;
 import info5100.university.example.Persona.StudentProfile;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -118,6 +119,10 @@ public class Department {
        
    }
 
+    public String getName() {
+        return name;
+    }
+
     public FacultyDirectory getFacultydirectory() {
         return facultydirectory;
     }
@@ -129,5 +134,9 @@ public class Department {
     public void printAllTeacherRatingsBySemester(String semester) {
         System.out.println("\t\tDepartment:" + name);
         facultydirectory.printAllTeacherRatingsBySemester(semester);
+    }
+
+    public List<Course> getCourses() {
+        return coursecatalog.getCourseList();
     }
 }

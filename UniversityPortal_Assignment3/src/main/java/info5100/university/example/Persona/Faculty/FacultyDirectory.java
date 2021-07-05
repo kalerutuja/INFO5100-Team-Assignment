@@ -48,5 +48,16 @@ public class FacultyDirectory {
             f.printAllTeacherRatingsBySemester(semester);
         }
     }
+
+    public int getFacultyCount() {
+        return teacherlist.size();
+    }
+
+    public FacultyProfile getFirstAvailable() {
+        
+        int count = teacherlist.size();
+        int randomIndex = (int)Math.random()*count;
+        return teacherlist.get(randomIndex);
+    }
     
 }

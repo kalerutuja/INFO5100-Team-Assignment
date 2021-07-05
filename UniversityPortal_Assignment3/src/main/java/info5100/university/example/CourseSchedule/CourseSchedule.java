@@ -8,6 +8,7 @@ package info5100.university.example.CourseSchedule;
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseCatalog.CourseCatalog;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -64,6 +65,22 @@ public class CourseSchedule {
 
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    // we assume we will have more than 1 course in course offer list.
+    public List<CourseOffer>  pickTwoRandomCourseOffer() {
+        List<CourseOffer> coList = new ArrayList<>();
+        int count = schedule.size();
+        int randomIndex = (int)Math.random()*count;
+        int randomIndex1 = 0;
+        coList.add(schedule.get(randomIndex));
+        if(randomIndex > 0) {
+            randomIndex1 = randomIndex - 1;
+        } else {
+            randomIndex1 = randomIndex + 1;
+        }
+        coList.add(schedule.get(randomIndex1));
+        return coList;
     }
     
     
