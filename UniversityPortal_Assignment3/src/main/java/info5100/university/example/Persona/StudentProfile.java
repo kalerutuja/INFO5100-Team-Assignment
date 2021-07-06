@@ -7,8 +7,13 @@ package info5100.university.example.Persona;
 
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseSchedule.CourseLoad;
+import info5100.university.example.CourseSchedule.CourseOffer;
 import info5100.university.example.Department.Degree;
+import info5100.university.example.Employer.EmployerProfile;
+import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,7 +30,7 @@ public class StudentProfile {
 
         person = p;
         transcript = new Transcript(this);
-        employmenthistory = new EmploymentHistory();
+        employmenthistory = new EmploymentHistory(this);
     }
 
     public boolean isMatch(String id) {
@@ -81,21 +86,33 @@ public class StudentProfile {
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
-     public boolean hasFullFilledDegreeRequirements(){
-        //1.  Check the required courses
-        boolean requiredCoursesReqMet =  true;
-        for(Course c: degree.getRequired()){
-            if(!transcript.getCoursesTaken().contains(c))
-                requiredCoursesReqMet = false;
-        }
-        //2.  credits and electives     
-        int totalCredits=0;
-         
-        for(Course c : transcript.getCoursesTaken()){
-            if((degree.getRequired().contains(c)) || (degree.getElectives().contains(c)))
-                 totalCredits+= c.getCredits();
-        }
-        boolean creditHoursReqMet = (totalCredits>=32);
-        return requiredCoursesReqMet && creditHoursReqMet;
-     }
+    public boolean hasFullFilledDegreeRequirements(){
+       //1.  Check the required courses
+       boolean requiredCoursesReqMet =  true;
+       for(Course c: degree.getRequired()){
+           if(!transcript.getCoursesTaken().contains(c))
+               requiredCoursesReqMet = false;
+       }
+       //2.  credits and electives     
+       int totalCredits=0;
+
+       for(Course c : transcript.getCoursesTaken()){
+           if((degree.getRequired().contains(c)) || (degree.getElectives().contains(c)))
+                totalCredits+= c.getCredits();
+       }
+       boolean creditHoursReqMet = (totalCredits>=32);
+       return requiredCoursesReqMet && creditHoursReqMet;
+    }
+    
+    public Employment newEmployment(String job, EmployerProfile ep) {
+        return employmenthistory.newEmployment(job, ep);
+    }
+
+    public CourseOffer pickRandomCourseOffer() {
+        CourseLoad cl = transcript.getCurrentCourseLoad();
+        List<CourseOffer> coList = cl.getCourseOffers();
+        int randomIndex = (int) Math.random()*coList.size();
+        return coList.get(randomIndex);
+    }
+     
 }

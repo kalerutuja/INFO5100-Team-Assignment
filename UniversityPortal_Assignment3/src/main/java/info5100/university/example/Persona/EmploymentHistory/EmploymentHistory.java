@@ -5,6 +5,8 @@
  */
 package info5100.university.example.Persona.EmploymentHistory;
 
+import info5100.university.example.Employer.EmployerProfile;
+import info5100.university.example.Persona.StudentProfile;
 import java.util.ArrayList;
 
 /**
@@ -13,12 +15,14 @@ import java.util.ArrayList;
  */
 public class EmploymentHistory {
     ArrayList<Employment> employments;
-    public EmploymentHistory(){
+    StudentProfile studentProfile;
+    public EmploymentHistory(StudentProfile sp){
+        studentProfile = sp;
         employments = new ArrayList();
     }
     
-    public Employment newEmployment(String job){
-        Employment ne = new Employment(job);
+    public Employment newEmployment(String job, EmployerProfile ep){
+        Employment ne = new Employment(job, ep);
         employments.add(ne);
         return ne;
     }

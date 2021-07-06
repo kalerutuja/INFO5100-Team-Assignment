@@ -43,6 +43,11 @@ public class Department {
         persondirectory = new PersonDirectory();
         degreeList = new ArrayList<Degree>();
         facultydirectory = new FacultyDirectory(this);
+        employerdirectory = new EmployerDirectory(this);
+    }
+
+    public EmployerDirectory getEmployerdirectory() {
+        return employerdirectory;
     }
 
     public PersonDirectory getPersonDirectory() {

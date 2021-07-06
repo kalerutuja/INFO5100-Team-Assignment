@@ -14,6 +14,8 @@ import info5100.university.example.CourseSchedule.CourseOffer;
 import info5100.university.example.CourseSchedule.CourseSchedule;
 import info5100.university.example.CourseSchedule.SeatAssignment;
 import info5100.university.example.Department.Department;
+import info5100.university.example.Employer.EmployerDirectory;
+import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.Faculty.FacultyDirectory;
 import info5100.university.example.Persona.Faculty.FacultyProfile;
 import info5100.university.example.Persona.Person;
@@ -35,21 +37,27 @@ public class Info5001UniversityExample {
      */
     public static void main(String[] args) {
         
-        University testU = createUniversityData(1, 2, 20, 15, 50);
+        University testU = createUniversityData(1, 2, 20, 15, 50, 30);
         createCourseOffers("fall2020", testU, 100);
         populateCoursesAndGrades("fall2020", testU);
+        populateEmploymentHistory(testU);
         
         createCourseOffers("spring2021", testU, 100);
         populateCoursesAndGrades("spring2021", testU);
-        
+        populateEmploymentHistory(testU);
+
         createCourseOffers("fall2021", testU, 100);
         populateCoursesAndGrades("fall2021", testU);
-    
+        populateEmploymentHistory(testU);
+
         createCourseOffers("spring2022", testU, 100);
         populateCoursesAndGrades("spring2022", testU);
-  
+        populateEmploymentHistory(testU);
+
         createCourseOffers("fall2022", testU, 100);
         populateCoursesAndGrades("fall2022", testU);
+        populateEmploymentHistory(testU);
+
         
     }
     
@@ -57,7 +65,8 @@ public class Info5001UniversityExample {
             int nOfDep,
             int nOfFaculty,
             int nOfCourses,
-            int nOfStudents) {
+            int nOfStudents,
+            int nOfEmployers) {
         Faker faker = new Faker();
         University university = new University(faker.university().name());
         for(int i = 0;i<nOfCol;i++) {
@@ -94,6 +103,10 @@ public class Info5001UniversityExample {
                     cc.newCourse(courseName, courseNumber, credits);
                 }
                 
+                EmployerDirectory ed = d.getEmployerdirectory();
+                for(int k=0;k<nOfEmployers;k++) {
+                    ed.newEmployerProfile(faker.company().name());
+                }     
             }
         }
         return university; 
@@ -144,4 +157,27 @@ public class Info5001UniversityExample {
             });
         });
     } 
+
+    private static void populateEmploymentHistory(University testU) {
+        Faker faker = new Faker();
+        List<Department> dl = testU.getAllDepartments();
+        dl.forEach(dept-> {
+            StudentDirectory sd = dept.getStudentDirectory();
+            List<StudentProfile> sl = sd.getStudentlist();
+            EmployerDirectory ed = dept.getEmployerdirectory();
+            // we will randomly pick a number between 1 - 5 
+            // and choose multiple of it to add employment to students
+            int random = (int) Math.random()*4 + 1;
+            for(int i = 0;i<sl.size();i++) {
+                if(i%random == 0) {
+                    StudentProfile sp = sl.get(i);
+                    Employment e = sp.newEmployment(faker.company().profession(),
+                           ed.pickRandomEmployer());
+                    e.addRelevantCourseOffer(sp.pickRandomCourseOffer());       
+                }
+            }
+            
+        });
+
+    }
 }
