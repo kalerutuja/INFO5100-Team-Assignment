@@ -31,7 +31,7 @@ public class Department {
     StudentDirectory studentdirectory;
     FacultyDirectory facultydirectory;
     EmployerDirectory employerdirectory;
-
+        
     HashMap<String, CourseSchedule> mastercoursecatalog;
     ArrayList<Degree> degreeList;
     
@@ -70,7 +70,7 @@ public class Department {
     public CourseSchedule getCourseSchedule(String semester) {
 
         return mastercoursecatalog.get(semester);
-
+        
     }
 
     public CourseCatalog getCourseCatalog() {
@@ -144,4 +144,11 @@ public class Department {
     public List<Course> getCourses() {
         return coursecatalog.getCourseList();
     }
+
+    @Override
+    public String toString() {
+        return "Department{" + "name=" + name + '}';
+    }
+    
+    
 }

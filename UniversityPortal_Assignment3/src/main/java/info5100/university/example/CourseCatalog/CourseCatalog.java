@@ -40,4 +40,10 @@ public class CourseCatalog {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "CourseCatalog{" + "department=" + department + ", courselist=" + courselist + '}';
+    }
+
+    
 }
