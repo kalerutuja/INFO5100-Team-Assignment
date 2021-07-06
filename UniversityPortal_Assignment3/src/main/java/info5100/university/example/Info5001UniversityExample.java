@@ -23,7 +23,11 @@ import info5100.university.example.Persona.PersonDirectory;
 import info5100.university.example.Persona.StudentDirectory;
 import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
+import info5100.university.reports.SubReportDTO;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -31,6 +35,8 @@ import java.util.List;
  * @author kal bugrara
  */
 public class Info5001UniversityExample {
+
+    private static Random random = new Random();
 
     /**
      * @param args the command line arguments
@@ -58,7 +64,7 @@ public class Info5001UniversityExample {
         populateCoursesAndGrades("fall2022", testU);
         populateEmploymentHistory(testU);
 
-        
+//        generateCourseVsInternshipReport(testU);
     }
     
     public static University createUniversityData(int nOfCol, 
@@ -71,6 +77,7 @@ public class Info5001UniversityExample {
         University university = new University(faker.university().name());
         for(int i = 0;i<nOfCol;i++) {
             College c = new College(faker.name().name() + " College");
+            System.out.println("College Created :" + c);
             university.addNewCollege(c);
             for( int j=0;j<nOfDep;j++) {
                 Department d = new Department(faker.name().name() + " Dept.");
@@ -98,10 +105,12 @@ public class Info5001UniversityExample {
                 CourseCatalog cc = d.getCourseCatalog();
                 for( int k = 0;k<nOfCourses;k++) {
                     String courseName = faker.name().name() + " course";
-                    String courseNumber = d.getName() + faker.code().toString();
+                    String courseNumber = "info " + (5000 + (random.nextInt(6000)) % 2000);
                     int credits = 8;
                     cc.newCourse(courseName, courseNumber, credits);
                 }
+                System.out.println("------Course Catalog ----");
+                System.out.println(cc);
                 
                 EmployerDirectory ed = d.getEmployerdirectory();
                 for(int k=0;k<nOfEmployers;k++) {
@@ -179,5 +188,12 @@ public class Info5001UniversityExample {
             
         });
 
+    }
+
+    private static void generateCourseVsInternshipReport( University university) {
+        Map<String, SubReportDTO> resultMap = new HashMap<>();
+//        List<Courses> courseList = university.getAllDepartments()
+        
+        
     }
 }
