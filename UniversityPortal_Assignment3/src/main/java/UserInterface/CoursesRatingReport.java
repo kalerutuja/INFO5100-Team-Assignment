@@ -9,12 +9,12 @@ package UserInterface;
  *
  * @author swaroopgupta
  */
-public class Courses_Rating_Report extends javax.swing.JPanel {
+public class CoursesRatingReport extends javax.swing.JPanel {
 
     /**
      * Creates new form Courses_Internship_Report
      */
-    public Courses_Rating_Report() {
+    public CoursesRatingReport() {
         initComponents();
     }
 

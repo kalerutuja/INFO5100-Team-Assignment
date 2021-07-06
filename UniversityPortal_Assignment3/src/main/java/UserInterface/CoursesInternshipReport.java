@@ -9,12 +9,12 @@ package UserInterface;
  *
  * @author swaroopgupta
  */
-public class Courses_Internship_Report extends javax.swing.JPanel {
+public class CoursesInternshipReport extends javax.swing.JPanel {
 
     /**
      * Creates new form Courses_Internship_Report
      */
-    public Courses_Internship_Report() {
+    public CoursesInternshipReport() {
         initComponents();
     }
 
@@ -77,11 +77,11 @@ public class Courses_Internship_Report extends javax.swing.JPanel {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
