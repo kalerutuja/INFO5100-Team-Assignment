@@ -57,4 +57,12 @@ public class College {
         }
     }
 
+    @Override
+    public String toString() {
+        return "College{" + "name=" + name + ", departmentList=" + departmentList + '}';
+    }
+    
+    
+    
+
 }
