@@ -7,6 +7,8 @@ package info5100.university.example.CourseSchedule;
 
 import info5100.university.example.CourseCatalog.Course;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -61,6 +63,14 @@ public class CourseLoad {
         ArrayList<Course> result = new ArrayList<>();
         for(SeatAssignment sa: seatassignments){
             result.add(sa.seat.getCourseOffer().getSubjectCourse());
+        }
+        return result;
+    }
+    
+    public List<CourseOffer> getCourseOffers() {
+        ArrayList<CourseOffer> result = new ArrayList<>();
+        for(SeatAssignment sa: seatassignments){
+            result.add(sa.seat.getCourseOffer());
         }
         return result;
     }

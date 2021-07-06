@@ -22,5 +22,5 @@ public class EmployerProfile {
     public boolean isMatch(String id){
         if(name.equals(id)) return true;             //String is an object and can do equal matach
         return false;
-    }  
+    } 
 }

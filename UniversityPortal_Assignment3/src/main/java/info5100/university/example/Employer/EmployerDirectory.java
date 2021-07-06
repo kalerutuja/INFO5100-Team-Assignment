@@ -43,5 +43,10 @@ public class EmployerDirectory {
         }
             return null; //not found after going through the whole list
          }
+
+    public EmployerProfile pickRandomEmployer() {
+        int random = (int) Math.random() * employerlist.size();
+        return employerlist.get(random);
+    }
     
 }

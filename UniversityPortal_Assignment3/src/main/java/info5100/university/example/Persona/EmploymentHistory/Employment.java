@@ -18,11 +18,16 @@ public class Employment {
     int weight;
     String quality;
     String job;
-    Employment nextemplyment;  //next job so they are in a sequence 
+    Employment nextemployment;  //next job so they are in a sequence 
+    EmployerProfile employerProfile;
     
-    EmployerProfile employer;
-    public Employment(String j){
-        ArrayList relevantcourseoffers = new ArrayList();    
+    public Employment(String j, EmployerProfile employerProfile){
+        this.employerProfile = employerProfile;
+        relevantcourseoffers = new ArrayList();    
     }
-
+    
+    public void addRelevantCourseOffer(CourseOffer co) {
+        relevantcourseoffers.add(co);
+    }
+    
 }
