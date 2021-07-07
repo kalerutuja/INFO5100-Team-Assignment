@@ -35,7 +35,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-
 /**
  *
  * @author kal bugrara
@@ -48,12 +47,12 @@ public class Info5001UniversityExample {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         University testU = createUniversityData(1, 2, 20, 15, 50, 30);
         createCourseOffers("fall2020", testU, 100);
         populateCoursesAndGrades("fall2020", testU);
         populateEmploymentHistory(testU);
-        
+
         createCourseOffers("spring2021", testU, 100);
         populateCoursesAndGrades("spring2021", testU);
         populateEmploymentHistory(testU);
@@ -69,12 +68,12 @@ public class Info5001UniversityExample {
         createCourseOffers("fall2022", testU, 100);
         populateCoursesAndGrades("fall2022", testU);
         populateEmploymentHistory(testU);
-        populateCourseRating(testU,100);
-
+        populateCourseRating(testU, 100);
 //        generateCourseVsInternshipReport(testU);
+
     }
-    
-    public static University createUniversityData(int nOfCol, 
+
+    public static University createUniversityData(int nOfCol,
             int nOfDep,
             int nOfFaculty,
             int nOfCourses,
@@ -82,60 +81,60 @@ public class Info5001UniversityExample {
             int nOfEmployers) {
         Faker faker = new Faker();
         University university = new University(faker.university().name());
-        for(int i = 0;i<nOfCol;i++) {
+        for (int i = 0; i < nOfCol; i++) {
             College c = new College(faker.name().name() + " College");
             System.out.println("College Created :" + c);
             university.addNewCollege(c);
-            for( int j=0;j<nOfDep;j++) {
+            for (int j = 0; j < nOfDep; j++) {
                 Department d = new Department(faker.name().name() + " Dept.");
                 c.addNewDepartment(d);
                 PersonDirectory pd = d.getPersonDirectory();
                 FacultyDirectory fd = d.getFacultydirectory();
-                
-                for(int k = 0;k<nOfFaculty;k++) {
+
+                for (int k = 0; k < nOfFaculty; k++) {
                     Person p = createFakePerson(pd, faker);
                     fd.newFacultyProfile(p);
-                    System.out.println("Faculty Created : " + p.getFullName() 
-                            + " with username : " + p.getId() + " with password : " 
+                    System.out.println("Faculty Created : " + p.getFullName()
+                            + " with username : " + p.getId() + " with password : "
                             + p.getPassword());
-                    
-                } 
-                
+
+                }
+
                 StudentDirectory sd = d.getStudentDirectory();
-                for(int k = 0;k<nOfStudents;k++) {
+                for (int k = 0; k < nOfStudents; k++) {
                     Person p = createFakePerson(pd, faker);
                     sd.newStudentProfile(p);
-                    System.out.println("Student Created : " + p.getFullName() 
-                    + " with username : " + p.getId() + " with password : " 
-                    + p.getPassword());
+                    System.out.println("Student Created : " + p.getFullName()
+                            + " with username : " + p.getId() + " with password : "
+                            + p.getPassword());
                 }
                 CourseCatalog cc = d.getCourseCatalog();
-                for( int k = 0;k<nOfCourses;k++) {
+                for (int k = 0; k < nOfCourses; k++) {
                     String courseName = faker.name().name() + " course";
-                    String courseNumber = "info " + (5000 + (random.nextInt(6000)) % 2000);
+                    String courseNumber = "INFO " + (5000 + (random.nextInt(6000)) % 2000);
                     int credits = 8;
                     cc.newCourse(courseName, courseNumber, credits);
                 }
                 System.out.println("------Course Catalog ----");
                 System.out.println(cc);
-                
+
                 EmployerDirectory ed = d.getEmployerdirectory();
-                for(int k=0;k<nOfEmployers;k++) {
+                for (int k = 0; k < nOfEmployers; k++) {
                     ed.newEmployerProfile(faker.company().name());
-                }     
+                }
             }
         }
-        return university; 
+        return university;
     }
-    
+
     public static Person createFakePerson(PersonDirectory pd, Faker faker) {
         Person p = pd.newPerson(faker.name().username());
         p.setFullName(faker.name().fullName());
         p.setPassword("password");
         return p;
     }
-    
-    public static void createCourseOffers(String semesterName, 
+
+    public static void createCourseOffers(String semesterName,
             University university,
             int nOfSeats) {
         List<Department> dl = university.getAllDepartments();
@@ -151,7 +150,7 @@ public class Info5001UniversityExample {
             });
         });
     }
-    
+
     public static void populateCoursesAndGrades(String semesterName,
             University university) {
         List<Department> dl = university.getAllDepartments();
@@ -164,64 +163,57 @@ public class Info5001UniversityExample {
                 List<CourseOffer> coList = cs.pickTwoRandomCourseOffer();
                 SeatAssignment sa1 = cl.newSeatAssignment(coList.get(0));
                 cl.registerStudent(sa1);
-                float grade1 = (float)Math.random()*2 + 2;
+                float grade1 = (float) Math.random() * 2 + 2;
                 sa1.setGrade(grade1);
                 SeatAssignment sa2 = cl.newSeatAssignment(coList.get(1));
                 cl.registerStudent(sa2);
-                float grade2 = (float)Math.random()*2 + 2;
+                float grade2 = (float) Math.random() * 2 + 2;
                 sa2.setGrade(grade2);
             });
         });
-    } 
+    }
 
     private static void populateEmploymentHistory(University testU) {
         Faker faker = new Faker();
         List<Department> dl = testU.getAllDepartments();
-        dl.forEach(dept-> {
+        dl.forEach(dept -> {
             StudentDirectory sd = dept.getStudentDirectory();
             List<StudentProfile> sl = sd.getStudentlist();
             EmployerDirectory ed = dept.getEmployerdirectory();
             // we will randomly pick a number between 1 - 5 
             // and choose multiple of it to add employment to students
-            int random = (int) Math.random()*4 + 1;
-            for(int i = 0;i<sl.size();i++) {
-                if(i%random == 0) {
+            int random = (int) Math.random() * 4 + 1;
+            for (int i = 0; i < sl.size(); i++) {
+                if (i % random == 0) {
                     StudentProfile sp = sl.get(i);
                     Employment e = sp.newEmployment(faker.company().profession(),
-                           ed.pickRandomEmployer());
-                    e.addRelevantCourseOffer(sp.pickRandomCourseOffer());       
+                            ed.pickRandomEmployer());
+                    e.addRelevantCourseOffer(sp.pickRandomCourseOffer());
                 }
             }
-            
+
         });
 
     }
-    
-    
-    private static void populateCourseRating(University uni,int nOfStudents){
-                List<Department> dl = uni.getAllDepartments();
-        
-        Comparator<CourseRatingData> comparator = new Comparator<CourseRatingData>() {
-            @Override
-            public int compare(CourseRatingData o1, CourseRatingData o2) {
-                if (o1.getRating() == o2.getRating()){
 
-                } else if (o1.getRating() > o2.getRating()) {
-                    return -1;
+    private static void populateCourseRating(University university, int nOfStudents) {
+        List<Department> dl = university.getAllDepartments();
+        System.out.println("Course Name\tCourse Rating\tNumber of Student Rated");
+        dl.forEach(dept -> {
+            ArrayList<Course> course = dept.getCourseCatalog().getCourseList();
+            for (Course c : course) {
+                int studentRated = (int) (Math.random() * nOfStudents);
+                for (int i = 0; i < studentRated; i++) {
+                    c.setRating(random.nextFloat() * 5);
                 }
-                return 1;
+                System.out.println(c.getCourseNumber() + "\t" + c.getRating() + "\t" + studentRated);
             }
-        };       
-
-    
+        });
     }
-     
-    
 
-    private static void generateCourseVsInternshipReport( University university) {
+    private static void generateCourseVsInternshipReport(University university) {
         Map<String, SubReportDTO> resultMap = new HashMap<>();
 //        List<Courses> courseList = university.getAllDepartments()
-        
-        
+
     }
 }
