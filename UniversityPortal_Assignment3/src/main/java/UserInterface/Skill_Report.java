@@ -16,6 +16,8 @@ public class Skill_Report extends javax.swing.JPanel {
      */
     public Skill_Report() {
         initComponents();
+        this.setSize(2000,2000);
+        
     }
 
     /**

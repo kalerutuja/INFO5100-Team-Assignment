@@ -15,6 +15,8 @@ public class Course {
     String name;
     int credits;
     int price = 1500; //per credit hour
+    float rating = 0.0f;
+
 
     public Course(String n, String numb, int ch) {
         name = n;
@@ -39,12 +41,18 @@ public class Course {
         return name;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Course{" + "number=" + number + ", name=" + name + '}';
     }
-
-   
-    
-    
 }

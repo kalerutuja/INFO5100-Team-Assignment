@@ -23,11 +23,17 @@ import info5100.university.example.Persona.PersonDirectory;
 import info5100.university.example.Persona.StudentDirectory;
 import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
+import info5100.university.reports.CourseRatingData;
 import info5100.university.reports.SubReportDTO;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -63,6 +69,7 @@ public class Info5001UniversityExample {
         createCourseOffers("fall2022", testU, 100);
         populateCoursesAndGrades("fall2022", testU);
         populateEmploymentHistory(testU);
+        populateCourseRating(testU,100);
 
 //        generateCourseVsInternshipReport(testU);
     }
@@ -189,6 +196,27 @@ public class Info5001UniversityExample {
         });
 
     }
+    
+    
+    private static void populateCourseRating(University uni,int nOfStudents){
+                List<Department> dl = uni.getAllDepartments();
+        
+        Comparator<CourseRatingData> comparator = new Comparator<CourseRatingData>() {
+            @Override
+            public int compare(CourseRatingData o1, CourseRatingData o2) {
+                if (o1.getRating() == o2.getRating()){
+
+                } else if (o1.getRating() > o2.getRating()) {
+                    return -1;
+                }
+                return 1;
+            }
+        };       
+
+    
+    }
+     
+    
 
     private static void generateCourseVsInternshipReport( University university) {
         Map<String, SubReportDTO> resultMap = new HashMap<>();

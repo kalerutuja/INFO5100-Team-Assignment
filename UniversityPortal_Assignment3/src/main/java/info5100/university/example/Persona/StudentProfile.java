@@ -114,5 +114,13 @@ public class StudentProfile {
         int randomIndex = (int) Math.random()*coList.size();
         return coList.get(randomIndex);
     }
+    
+    //TODO
+    
+    //assign 3 skills to student 
+    //random method in a loop
+    //hashmap
+    
+    
      
 }
