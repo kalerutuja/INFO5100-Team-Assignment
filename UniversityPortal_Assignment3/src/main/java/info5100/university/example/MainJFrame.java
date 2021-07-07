@@ -3,27 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface;
+package info5100.university.example;
 
+import UserInterface.GPA_Report;
+import static info5100.university.example.Info5001UniversityExample.createCourseOffers;
+import static info5100.university.example.Info5001UniversityExample.createUniversityData;
+import static info5100.university.example.Info5001UniversityExample.populateCoursesAndGrades;
+import static info5100.university.example.Info5001UniversityExample.populateEmploymentHistory;
 import info5100.university.example.University.University;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
- * @author swaroopgupta
+ * @author Surbhi
  */
- 
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
     University university;
+    
     public MainJFrame() {
         initComponents();
+        university = createUniversityData(1, 2, 20, 15, 50, 30);
+        createCourseOffers("fall2020", university, 100);
+        populateCoursesAndGrades("fall2020", university);
+        //populateEmploymentHistory(university);
         
-        university = new University("");
-        setLoginPanel();
+        createCourseOffers("spring2021", university, 100);
+        populateCoursesAndGrades("spring2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2021", university, 100);
+        populateCoursesAndGrades("fall2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("spring2022", university, 100);
+        populateCoursesAndGrades("spring2022", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2022", university, 100);
+        populateCoursesAndGrades("fall2022", university);
+        populateEmploymentHistory(university);
+        
+        //setResizable(false); 
+        setGPAReport();
     }
 
     /**
@@ -46,15 +72,16 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(mainWorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(370, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainWorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(17, 17, 17)
+                .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,11 +122,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
-    private void setLoginPanel() {
-       LoginPanel gr = new LoginPanel(mainWorkArea,university);
-       mainWorkArea.add("LoginPanel", gr);
+    private void setGPAReport() {
+       GPA_Report gr = new GPA_Report(university, mainWorkArea);
+       mainWorkArea.add("GPA_Report", gr);
        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-       layout.next(mainWorkArea);   
+       layout.next(mainWorkArea);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

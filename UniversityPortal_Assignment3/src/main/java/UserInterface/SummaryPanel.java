@@ -33,6 +33,11 @@ public class SummaryPanel extends javax.swing.JPanel {
         btnCourseRating = new javax.swing.JButton();
 
         btnGPAReport.setText("Report for GPA v/s Industrial Success");
+        btnGPAReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGPAReportActionPerformed(evt);
+            }
+        });
 
         btnCourse_Internships.setText("Report of Courses vs Internships");
         btnCourse_Internships.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +81,14 @@ public class SummaryPanel extends javax.swing.JPanel {
     private void btnCourse_InternshipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse_InternshipsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCourse_InternshipsActionPerformed
+
+    private void btnGPAReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGPAReportActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+    }//GEN-LAST:event_btnGPAReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

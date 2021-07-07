@@ -26,5 +26,21 @@ public class EmploymentHistory {
         employments.add(ne);
         return ne;
     }
+
+    public boolean isEmpty() {
+        return employments.isEmpty();
+    }
+
+    public boolean hasValidInternship() {
+        if(employments.isEmpty()) {
+            return false;
+        }
+        
+        if(studentProfile.getCredits() >= 16) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     
 }
