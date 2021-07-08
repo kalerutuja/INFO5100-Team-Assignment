@@ -12,6 +12,7 @@ import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import info5100.university.reports.CourseVsInternshipReportDTO;
 import info5100.university.reports.SubReportDTO;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -29,7 +30,7 @@ public class CoursesInternshipReport extends javax.swing.JPanel {
      JPanel workArea;
      University university;
      
-    public CoursesInternshipReport(University university,JPanel workArea) {
+    public CoursesInternshipReport(JPanel workArea,University university) {
         initComponents();
         
         this.workArea = workArea;
@@ -138,6 +139,11 @@ public class CoursesInternshipReport extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblCourses_Internship_Report);
 
         btnBack.setText("Back<<");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Report of Courses vs Internships");
@@ -169,6 +175,14 @@ public class CoursesInternshipReport extends javax.swing.JPanel {
                 .addContainerGap(288, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        
+        SummaryPanel sp = new SummaryPanel(workArea,university);
+        workArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea); 
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
