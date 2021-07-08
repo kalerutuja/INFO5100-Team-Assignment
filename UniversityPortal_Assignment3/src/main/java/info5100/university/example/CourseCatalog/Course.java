@@ -5,6 +5,8 @@
  */
 package info5100.university.example.CourseCatalog;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author kal bugrara
@@ -16,7 +18,6 @@ public class Course {
     int credits;
     int price = 1500; //per credit hour
     float rating = 0.0f;
-
 
     public Course(String n, String numb, int ch) {
         name = n;

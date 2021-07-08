@@ -25,6 +25,7 @@ import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import info5100.university.reports.CourseRatingData;
 import info5100.university.reports.SubReportDTO;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -40,6 +41,8 @@ import java.util.TreeSet;
  * @author kal bugrara
  */
 public class Info5001UniversityExample {
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     private static Random random = new Random();
 
@@ -197,6 +200,7 @@ public class Info5001UniversityExample {
     }
 
     private static void populateCourseRating(University university, int nOfStudents) {
+
         List<Department> dl = university.getAllDepartments();
         System.out.println("Course Name\tCourse Rating\tNumber of Student Rated");
         dl.forEach(dept -> {
@@ -206,7 +210,7 @@ public class Info5001UniversityExample {
                 for (int i = 0; i < studentRated; i++) {
                     c.setRating(random.nextFloat() * 5);
                 }
-                System.out.println(c.getCourseNumber() + "\t" + c.getRating() + "\t" + studentRated);
+                System.out.println(c.getCourseNumber() + "\t" + df.format(c.getRating()) + "\t" + studentRated);
             }
         });
     }

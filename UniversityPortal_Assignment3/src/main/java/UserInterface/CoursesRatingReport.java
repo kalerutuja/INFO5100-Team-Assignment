@@ -68,7 +68,7 @@ public class CoursesRatingReport extends javax.swing.JPanel {
         btnBack.setText("Back<<");
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("Report of Courses vs Internships");
+        jLabel1.setText("Report of CourseRating");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
