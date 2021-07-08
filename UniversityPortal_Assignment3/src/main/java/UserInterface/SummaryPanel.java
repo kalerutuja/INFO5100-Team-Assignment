@@ -87,7 +87,11 @@ public class SummaryPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCourse_InternshipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse_InternshipsActionPerformed
-        // TODO add your handling code here:
+        
+        CoursesInternshipReport CoursesInternshipReport = new CoursesInternshipReport(workArea,university);
+        workArea.add("CoursesInternshipReport", CoursesInternshipReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_btnCourse_InternshipsActionPerformed
 
     private void btnGPAReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGPAReportActionPerformed
