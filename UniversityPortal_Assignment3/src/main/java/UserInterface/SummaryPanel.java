@@ -57,6 +57,11 @@ public class SummaryPanel extends javax.swing.JPanel {
         btnSkillReport.setText("Skill Report");
 
         btnCourseRating.setText("Course Rating");
+        btnCourseRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourseRatingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,6 +107,14 @@ public class SummaryPanel extends javax.swing.JPanel {
         layout.next(workArea);
       
     }//GEN-LAST:event_btnGPAReportActionPerformed
+
+    private void btnCourseRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseRatingActionPerformed
+        // TODO add your handling code here:
+        CoursesRatingReport courseReport = new CoursesRatingReport(workArea,university);
+        workArea.add("CoursesRatingReport", courseReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnCourseRatingActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

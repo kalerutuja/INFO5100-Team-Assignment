@@ -106,7 +106,8 @@ public class Info5001UniversityExample {
                 CourseCatalog cc = d.getCourseCatalog();
                 for( int k = 0;k<nOfCourses;k++) {
                     String courseName = faker.name().name() + " course";
-                    String courseNumber = "info " + (5000 + (random.nextInt(6000)) % 2000);
+//                    String courseNumber = "INFO " + (5000 + (random.nextInt(6000)) % 2000);
+                        String courseNumber = "INFO" +(5000+ (int) (Math.random()*10));
                     int credits = 8;
                     cc.newCourse(courseName, courseNumber, credits);
                 }

@@ -90,7 +90,7 @@ public class CoursesInternshipReport extends javax.swing.JPanel {
                 -> {
             return Double.valueOf(c2.getMetrics().getSuccessRate()).compareTo(Double.valueOf(c1.getMetrics().getSuccessRate()));
         });
-        System.out.println(resultList);
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%"+resultList);
         return resultList;
     }
     /**
