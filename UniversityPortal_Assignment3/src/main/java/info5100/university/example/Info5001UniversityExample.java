@@ -157,17 +157,18 @@ public class Info5001UniversityExample {
                 List<CourseOffer> coList = cs.pickTwoRandomCourseOffer();
                 SeatAssignment sa1 = cl.newSeatAssignment(coList.get(0));
                 cl.registerStudent(sa1);
-                float grade1 = (float)Math.random()*2 + 2;
+                
+                float grade1 = random.nextFloat()*4;
                 sa1.setGrade(grade1);
                 SeatAssignment sa2 = cl.newSeatAssignment(coList.get(1));
                 cl.registerStudent(sa2);
-                float grade2 = (float)Math.random()*2 + 2;
+                float grade2 = random.nextFloat()*4;
                 sa2.setGrade(grade2);
             });
         });
     } 
 
-    private static void populateEmploymentHistory(University testU) {
+    public static void populateEmploymentHistory(University testU) {
         Faker faker = new Faker();
         List<Department> dl = testU.getAllDepartments();
         dl.forEach(dept-> {
@@ -176,9 +177,9 @@ public class Info5001UniversityExample {
             EmployerDirectory ed = dept.getEmployerdirectory();
             // we will randomly pick a number between 1 - 5 
             // and choose multiple of it to add employment to students
-            int random = (int) Math.random()*4 + 1;
+            int randomInt = random.nextInt(10) + 1;
             for(int i = 0;i<sl.size();i++) {
-                if(i%random == 0) {
+                if(i%randomInt == 0) {
                     StudentProfile sp = sl.get(i);
                     Employment e = sp.newEmployment(faker.company().profession(),
                            ed.pickRandomEmployer());
@@ -190,10 +191,5 @@ public class Info5001UniversityExample {
 
     }
 
-    private static void generateCourseVsInternshipReport( University university) {
-        Map<String, SubReportDTO> resultMap = new HashMap<>();
-//        List<Courses> courseList = university.getAllDepartments()
-        
-        
-    }
+
 }

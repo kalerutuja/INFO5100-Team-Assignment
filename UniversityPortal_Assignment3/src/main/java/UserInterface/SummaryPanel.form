@@ -49,6 +49,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Report for GPA v/s Industrial Success"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGPAReportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCourse_Internships">
       <Properties>

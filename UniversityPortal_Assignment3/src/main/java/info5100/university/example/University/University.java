@@ -7,7 +7,14 @@ package info5100.university.example.University;
 
 import info5100.university.example.College.College;
 import info5100.university.example.Department.Department;
+import info5100.university.example.Persona.StudentProfile;
+import info5100.university.reports.GPAReportData;
+import info5100.university.reports.GradeRange;
+import info5100.university.reports.SubReportDTO;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -71,5 +78,44 @@ public class University {
         return departments;
     }
 
-    
+    public List<GPAReportData> getGPAReportDataList() {
+        List<StudentProfile> studentMasterList = getAllStudents();
+        HashMap<GradeRange,List<StudentProfile>> gradeRangeStudentMap = new HashMap<>();
+        
+        for(GradeRange gr : GradeRange.values()) {
+            gradeRangeStudentMap.put(gr, new ArrayList<StudentProfile>());
+        }
+        studentMasterList.forEach(student -> {
+            float grade = student.getGPA();
+            GradeRange g = GradeRange.determineGradeRangeFromGrade(grade);
+            gradeRangeStudentMap.get(g).add(student);         
+        });
+        List<GPAReportData> gpaReportDataList = new ArrayList<>();
+        gradeRangeStudentMap.forEach((gradeRange, studentList) -> {
+            SubReportDTO srd = new SubReportDTO();
+            srd.setNoOfStudents(studentList.size());
+            srd.setStudentsWithInternship(determineEmployedStudentCount(studentList));
+            GPAReportData data = new GPAReportData(srd, gradeRange);
+            gpaReportDataList.add(data);
+        });
+        gpaReportDataList.sort((GPAReportData o1, GPAReportData o2) 
+                -> o1.getGradeRange().compareTo(o2.getGradeRange()));
+        return gpaReportDataList;  
+    }  
+
+    private List<StudentProfile> getAllStudents() {
+        List<StudentProfile> students = new ArrayList<>();
+        collegeList.forEach(col -> students.addAll(col.getAllStudents()));
+        return students; 
+    }
+
+    private int determineEmployedStudentCount(List<StudentProfile> studentList) {
+        int count = 0;
+        for(StudentProfile s : studentList) {
+            if(s.hasValidInternship()) {
+                count = count + 1;
+            }
+        }   
+        return count;
+    }
 }

@@ -5,17 +5,51 @@
  */
 package UserInterface;
 
+import static info5100.university.example.Info5001UniversityExample.createCourseOffers;
+import static info5100.university.example.Info5001UniversityExample.createUniversityData;
+import static info5100.university.example.Info5001UniversityExample.populateCoursesAndGrades;
+import static info5100.university.example.Info5001UniversityExample.populateEmploymentHistory;
+import info5100.university.example.University.University;
+import java.awt.CardLayout;
+
 /**
  *
  * @author swaroopgupta
  */
+ 
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
+    University university;
     public MainJFrame() {
         initComponents();
+        setSize(800,600);
+        setResizable(true);
+        
+        university = createUniversityData(1, 2, 20, 15, 50, 30);
+        createCourseOffers("fall2020", university, 100);
+        populateCoursesAndGrades("fall2020", university);
+        //populateEmploymentHistory(university);
+        
+        createCourseOffers("spring2021", university, 100);
+        populateCoursesAndGrades("spring2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2021", university, 100);
+        populateCoursesAndGrades("fall2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("spring2022", university, 100);
+        populateCoursesAndGrades("spring2022", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2022", university, 100);
+        populateCoursesAndGrades("fall2022", university);
+        populateEmploymentHistory(university);
+        
+        setLoginPanel();
     }
 
     /**
@@ -27,17 +61,26 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainWorkArea = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        mainWorkArea.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainWorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainWorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -78,6 +121,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
+    private void setLoginPanel() {
+       LoginPanel lp = new LoginPanel(mainWorkArea,university);
+       mainWorkArea.add("LoginPanel", lp);
+       CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+       layout.next(mainWorkArea);   
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel mainWorkArea;
     // End of variables declaration//GEN-END:variables
 }
