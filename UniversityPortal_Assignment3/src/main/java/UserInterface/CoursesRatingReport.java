@@ -210,7 +210,6 @@ public class CoursesRatingReport extends javax.swing.JPanel {
                     courseRatingData.setCourseRating(random.nextFloat() * 5);
                     courseRatingData.setStudentsRated((int) (Math.random() * nOfStudents));
                     resultList.add(courseRatingData);
-                    System.out.println("Counnnnnnt = "+count+"^^^^^^^^^^^^^^^^^^^^^^^^"+resultList);
                 }
 
             
