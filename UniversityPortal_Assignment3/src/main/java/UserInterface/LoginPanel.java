@@ -122,7 +122,7 @@ public class LoginPanel extends javax.swing.JPanel {
         } 
         Map<String, String> usernamePasswordMap = new HashMap<>();
         usernamePasswordMap.put("surbhi", "surbhi123");
-        usernamePasswordMap.put("rutuja", "rutuja123");
+        usernamePasswordMap.put("r", "r");
         usernamePasswordMap.put("swaroop_123", "swaroop123");
         if(!validateCredentials(usernamePasswordMap)) {
             JOptionPane.showMessageDialog(this, "Invalid Username and Password"
