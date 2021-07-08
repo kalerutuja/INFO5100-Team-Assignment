@@ -5,6 +5,18 @@
  */
 package UserInterface;
 
+import info5100.university.example.CourseCatalog.Course;
+import info5100.university.example.Department.Department;
+import info5100.university.example.Persona.StudentDirectory;
+import info5100.university.example.Persona.StudentProfile;
+import info5100.university.example.University.University;
+import info5100.university.reports.CourseVsInternshipReportDTO;
+import info5100.university.reports.SubReportDTO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author swaroopgupta
@@ -14,10 +26,72 @@ public class CoursesInternshipReport extends javax.swing.JPanel {
     /**
      * Creates new form Courses_Internship_Report
      */
-    public CoursesInternshipReport() {
+     JPanel workArea;
+     University university;
+     
+    public CoursesInternshipReport(University university,JPanel workArea) {
         initComponents();
-    }
+        
+        this.workArea = workArea;
+        this.university = university;
 
+        refreshTable();
+    }
+    
+    
+     private void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel)tblCourses_Internship_Report.getModel();
+        model.setRowCount(0);
+        List<CourseVsInternshipReportDTO> resultList = generateCourseVsInternshipReport(university);
+        
+        for(CourseVsInternshipReportDTO cir : resultList){
+            Object row[] = new Object[2];
+            row[0] = cir.getCourseName();
+            row[1] = cir.getMetrics().getStudentsWithInternship();
+             model.addRow(row);
+            
+        }   
+    }
+     
+    private static List<CourseVsInternshipReportDTO> generateCourseVsInternshipReport( University university) {
+        
+        List<CourseVsInternshipReportDTO> resultList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        StudentDirectory studentdirectory;
+        String courseName;
+        CourseVsInternshipReportDTO courseVsInternshipReportDTO;
+        SubReportDTO subReportDTO;
+        
+        for (Department dept : university.getAllDepartments()) {
+            courseList = dept.getCourses();
+            studentdirectory = dept.getStudentDirectory();
+            
+            if (courseList != null && courseList.size() > 0) {
+                for (Course c : courseList) {
+                    courseName = c.getName();
+                    courseVsInternshipReportDTO = new CourseVsInternshipReportDTO();
+                    subReportDTO = new SubReportDTO();
+                    for (StudentProfile student : studentdirectory.getStudentlist()) {
+                        if(student.getTranscript().getCoursesTaken().contains(c)){ // maybe check if courses were relevant for employment?
+                            subReportDTO.setNoOfStudents(subReportDTO.getNoOfStudents() + 1);
+                            if(student.hasValidInternship())
+                                subReportDTO.setStudentsWithInternship(subReportDTO.getStudentsWithInternship() + 1);
+                        }
+                    }
+                    subReportDTO.setSuccessRate(subReportDTO.calculateSuccessRate());
+                    courseVsInternshipReportDTO.setCourseName(courseName);
+                    courseVsInternshipReportDTO.setMetrics(subReportDTO);
+                    resultList.add(courseVsInternshipReportDTO);
+                }
+            }
+        }
+        resultList.sort((CourseVsInternshipReportDTO c1, CourseVsInternshipReportDTO c2) 
+                -> {
+            return Double.valueOf(c2.getMetrics().getSuccessRate()).compareTo(Double.valueOf(c1.getMetrics().getSuccessRate()));
+        });
+        System.out.println(resultList);
+        return resultList;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

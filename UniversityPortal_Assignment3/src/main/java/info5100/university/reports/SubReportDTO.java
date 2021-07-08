@@ -45,4 +45,11 @@ public class SubReportDTO {
         }
         return Double.valueOf(sRate);
     }
+
+    @Override
+    public String toString() {
+        return "SubReportDTO{" + "noOfStudents=" + noOfStudents + ", studentsWithInternship=" + studentsWithInternship + ", successRate=" + successRate + '}';
+    }
+    
+    
 }
