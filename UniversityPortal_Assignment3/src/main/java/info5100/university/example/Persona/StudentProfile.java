@@ -114,5 +114,22 @@ public class StudentProfile {
         int randomIndex = (int) Math.random()*coList.size();
         return coList.get(randomIndex);
     }
-     
+
+    public Transcript getTranscript() {
+        return transcript;
+    }
+
+    public EmploymentHistory getEmploymenthistory() {
+        return employmenthistory;
+    }
+    
+    public boolean hasValidInternship() {
+        return employmenthistory.hasValidInternship();
+    }
+
+    public int getCredits() {
+        return transcript.calculateTotalCredits();
+    }
+
+    
 }

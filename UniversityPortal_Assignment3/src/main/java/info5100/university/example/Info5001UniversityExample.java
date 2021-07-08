@@ -23,7 +23,9 @@ import info5100.university.example.Persona.PersonDirectory;
 import info5100.university.example.Persona.StudentDirectory;
 import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
+import info5100.university.reports.CourseVsInternshipReportDTO;
 import info5100.university.reports.SubReportDTO;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +66,6 @@ public class Info5001UniversityExample {
         populateCoursesAndGrades("fall2022", testU);
         populateEmploymentHistory(testU);
 
-//        generateCourseVsInternshipReport(testU);
     }
     
     public static University createUniversityData(int nOfCol, 
@@ -190,10 +191,4 @@ public class Info5001UniversityExample {
 
     }
 
-    private static void generateCourseVsInternshipReport( University university) {
-        Map<String, SubReportDTO> resultMap = new HashMap<>();
-//        List<Courses> courseList = university.getAllDepartments()
-        
-        
-    }
 }

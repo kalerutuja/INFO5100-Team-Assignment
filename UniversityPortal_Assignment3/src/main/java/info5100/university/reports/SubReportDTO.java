@@ -37,6 +37,19 @@ public class SubReportDTO {
     }
     
     public double calculateSuccessRate(){
-        return Double.valueOf(studentsWithInternship/noOfStudents);
+        float sRate;
+        if(noOfStudents == 0) {
+            sRate = 0f;
+        }else {
+            sRate = studentsWithInternship*100/noOfStudents;
+        }
+        return Double.valueOf(sRate);
     }
+
+    @Override
+    public String toString() {
+        return "SubReportDTO{" + "noOfStudents=" + noOfStudents + ", studentsWithInternship=" + studentsWithInternship + ", successRate=" + successRate + '}';
+    }
+    
+    
 }
