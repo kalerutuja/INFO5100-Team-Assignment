@@ -5,6 +5,10 @@
  */
 package UserInterface;
 
+import info5100.university.example.University.University;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author swaroopgupta
@@ -14,8 +18,12 @@ public class SummaryPanel extends javax.swing.JPanel {
     /**
      * Creates new form SummaryPanel
      */
-    public SummaryPanel() {
+    private JPanel workArea;
+    University university;
+    public SummaryPanel(JPanel workArea,University university) {
         initComponents();
+        this.workArea = workArea;
+        this.university = university;
     }
 
     /**
@@ -84,10 +92,11 @@ public class SummaryPanel extends javax.swing.JPanel {
 
     private void btnGPAReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGPAReportActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        
+        GPA_Report gpaReport = new GPA_Report(workArea,university);
+        workArea.add("GPAReport", gpaReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
+      
     }//GEN-LAST:event_btnGPAReportActionPerformed
 
 

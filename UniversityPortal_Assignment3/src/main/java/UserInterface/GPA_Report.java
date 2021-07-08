@@ -10,6 +10,7 @@ import info5100.university.example.University.University;
 import info5100.university.reports.GPAReportData;
 import info5100.university.reports.GradeRange;
 import info5100.university.reports.SubReportDTO;
+import java.awt.CardLayout;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JPanel;
@@ -27,7 +28,7 @@ public class GPA_Report extends javax.swing.JPanel {
      JPanel workArea;
      University university;
           
-    public GPA_Report(University university,JPanel workArea) {
+    public GPA_Report(JPanel workArea,University university) {
         initComponents();
         this.workArea = workArea;
         this.university = university;
@@ -119,6 +120,12 @@ public class GPA_Report extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        SummaryPanel sp = new SummaryPanel(workArea,university);
+        workArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea); 
+        
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
 

@@ -5,6 +5,10 @@
  */
 package UserInterface;
 
+import static info5100.university.example.Info5001UniversityExample.createCourseOffers;
+import static info5100.university.example.Info5001UniversityExample.createUniversityData;
+import static info5100.university.example.Info5001UniversityExample.populateCoursesAndGrades;
+import static info5100.university.example.Info5001UniversityExample.populateEmploymentHistory;
 import info5100.university.example.University.University;
 import java.awt.CardLayout;
 
@@ -21,8 +25,30 @@ public class MainJFrame extends javax.swing.JFrame {
     University university;
     public MainJFrame() {
         initComponents();
+        setSize(800,600);
+        setResizable(true);
         
-        university = new University("");
+        university = createUniversityData(1, 2, 20, 15, 50, 30);
+        createCourseOffers("fall2020", university, 100);
+        populateCoursesAndGrades("fall2020", university);
+        //populateEmploymentHistory(university);
+        
+        createCourseOffers("spring2021", university, 100);
+        populateCoursesAndGrades("spring2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2021", university, 100);
+        populateCoursesAndGrades("fall2021", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("spring2022", university, 100);
+        populateCoursesAndGrades("spring2022", university);
+        //populateEmploymentHistory(university);
+
+        createCourseOffers("fall2022", university, 100);
+        populateCoursesAndGrades("fall2022", university);
+        populateEmploymentHistory(university);
+        
         setLoginPanel();
     }
 
@@ -96,8 +122,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void setLoginPanel() {
-       LoginPanel gr = new LoginPanel(mainWorkArea,university);
-       mainWorkArea.add("LoginPanel", gr);
+       LoginPanel lp = new LoginPanel(mainWorkArea,university);
+       mainWorkArea.add("LoginPanel", lp);
        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
        layout.next(mainWorkArea);   
     }

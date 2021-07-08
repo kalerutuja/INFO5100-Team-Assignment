@@ -6,6 +6,10 @@
 package UserInterface;
 
 import info5100.university.example.University.University;
+import java.awt.CardLayout;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +27,7 @@ public class LoginPanel extends javax.swing.JPanel {
         initComponents();
         this.university = university;
         this.mainWorkArea = mainWorkArea;
+        
     }
 
     /**
@@ -105,8 +110,31 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        String errorMessage = fetchErrorMessageForCredentials();
+        if (!errorMessage.isEmpty()){
+            StringBuilder builder = new StringBuilder();
+            builder.append("Please correct following "
+                    + "details to continue -");
+            builder.append("\n");
+            builder.append(errorMessage);        
+            JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        Map<String, String> usernamePasswordMap = new HashMap<>();
+        usernamePasswordMap.put("surbhi", "surbhi123");
+        usernamePasswordMap.put("rutuja", "rutuja123");
+        usernamePasswordMap.put("swaroop_123", "swaroop123");
+        if(!validateCredentials(usernamePasswordMap)) {
+            JOptionPane.showMessageDialog(this, "Invalid Username and Password"
+                    ,"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
       
+        
+        SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
+        mainWorkArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.next(mainWorkArea); 
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
@@ -118,4 +146,46 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    private String fetchErrorMessageForCredentials() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("");
+        builder.append(fetchErrorMessageForUserName());
+        builder.append(fetchErrorMessageForPassword());
+        return builder.toString().trim();    
+    }
+
+    private String fetchErrorMessageForUserName() {
+        String errorMessage = "";
+        if(txtUserName.getText().isEmpty()) {
+            errorMessage = "Please fill the username\n";
+            return errorMessage;
+        }
+        if(!txtUserName.getText().matches("^[a-zA-Z,0-9,.,-,_]+$")){
+            errorMessage = "Username is not valid\n ";
+        }       
+        return errorMessage;
+    }
+
+    private String fetchErrorMessageForPassword() {
+        String errorMessage = "";
+        if(txtPassword.getText().isEmpty()) {
+            errorMessage = "Please fill the password\n";
+        }
+        return errorMessage;
+    }
+
+    private boolean validateCredentials(Map<String, String> usernamePasswordMap) {
+        String usernameInput = txtUserName.getText();
+        String passwordInput = txtPassword.getText(); 
+       
+      
+        if(usernamePasswordMap.containsKey(usernameInput)) {
+            String validPasswordForUsername = usernamePasswordMap.get(usernameInput);
+            if(validPasswordForUsername.equals(passwordInput)) {
+                return true;
+            }
+        }
+        return false;   
+    }
 }
