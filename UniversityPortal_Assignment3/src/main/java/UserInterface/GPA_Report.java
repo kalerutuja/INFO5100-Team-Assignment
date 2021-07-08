@@ -5,6 +5,17 @@
  */
 package UserInterface;
 
+import info5100.university.example.College.College;
+import info5100.university.example.University.University;
+import info5100.university.reports.GPAReportData;
+import info5100.university.reports.GradeRange;
+import info5100.university.reports.SubReportDTO;
+import java.awt.CardLayout;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author swaroopgupta
@@ -14,8 +25,15 @@ public class GPA_Report extends javax.swing.JPanel {
     /**
      * Creates new form GPA_Report
      */
-    public GPA_Report() {
+     JPanel workArea;
+     University university;
+          
+    public GPA_Report(JPanel workArea,University university) {
         initComponents();
+        this.workArea = workArea;
+        this.university = university;
+      
+        refreshTable();
     }
 
     /**
@@ -27,13 +45,13 @@ public class GPA_Report extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGPA_Report = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("Report for GPA v/s  Industrial Success");
+        lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblTitle.setText("Report for GPA v/s  Industrial Success");
 
         jScrollPane1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
@@ -46,7 +64,7 @@ public class GPA_Report extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Grade Range", "No of Students", "No of Students who got Internship", "Success Rate"
+                "Grade Range", "No of Students", "No of Students who got Internship", "Success Rate in %"
             }
         ) {
             Class[] types = new Class [] {
@@ -67,6 +85,11 @@ public class GPA_Report extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblGPA_Report);
 
         btnBack.setText("Back<<");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,7 +101,7 @@ public class GPA_Report extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91)
-                        .addComponent(jLabel1))
+                        .addComponent(lblTitle))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(454, Short.MAX_VALUE))
         );
@@ -87,7 +110,7 @@ public class GPA_Report extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTitle)
                     .addComponent(btnBack))
                 .addGap(57, 57, 57)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -95,11 +118,36 @@ public class GPA_Report extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        SummaryPanel sp = new SummaryPanel(workArea,university);
+        workArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea); 
+        
+        
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblGPA_Report;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel)tblGPA_Report.getModel();
+        model.setRowCount(0);
+        List<GPAReportData> gpaReportDataList = university.getGPAReportDataList();   
+
+        for(GPAReportData g :  gpaReportDataList) {
+            Object row[] = new Object[4];
+            row[0] = g.getGradeRange();
+            row[1] = g.getSubReportDTO().getNoOfStudents();
+            row[2] = g.getSubReportDTO().getStudentsWithInternship();
+            row[3] = g.getSubReportDTO().calculateSuccessRate();
+            model.addRow(row);
+        }    
+    }
 }

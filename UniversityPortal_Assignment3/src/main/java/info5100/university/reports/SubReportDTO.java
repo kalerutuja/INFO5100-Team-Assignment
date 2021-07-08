@@ -10,8 +10,16 @@ public class SubReportDTO {
     
     int noOfStudents = 0;
     int studentsWithInternship = 0;
-    double successRate = 0.0;
+    double successRate;
 
+    public double getSuccessRate() {
+        return successRate;
+    }
+
+    public void setSuccessRate(double successRate) {
+        this.successRate = successRate;
+    }
+ 
     public int getNoOfStudents() {
         return noOfStudents;
     }
@@ -28,14 +36,6 @@ public class SubReportDTO {
         this.studentsWithInternship = studentsWithInternship;
     }
 
-    public double getSuccessRate() {
-        return successRate;
-    }
-
-    public void setSuccessRate(double successRate) {
-        this.successRate = successRate;
-    }
-    
     public double calculateSuccessRate(){
         float sRate;
         if(noOfStudents == 0) {

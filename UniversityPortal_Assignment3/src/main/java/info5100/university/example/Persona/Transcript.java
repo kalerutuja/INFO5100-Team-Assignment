@@ -81,7 +81,7 @@ public class Transcript {
         }
          return result;
     }
-    
+
     int calculateTotalCredits() {
         int totalCreditHours = 0;
         for(CourseLoad cl: courseloadlist.values()) {

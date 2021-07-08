@@ -5,6 +5,13 @@
  */
 package UserInterface;
 
+import info5100.university.example.University.University;
+import java.awt.CardLayout;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author swaroopgupta
@@ -14,8 +21,13 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel() {
+    JPanel mainWorkArea;
+    University university;
+    public LoginPanel(JPanel mainWorkArea,University university) {
         initComponents();
+        this.university = university;
+        this.mainWorkArea = mainWorkArea;
+        
     }
 
     /**
@@ -30,9 +42,9 @@ public class LoginPanel extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         lblUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
+        txtUserName = new javax.swing.JTextField();
+        lblTitle = new javax.swing.JLabel();
 
         btnLogin.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnLogin.setText("Login");
@@ -50,9 +62,9 @@ public class LoginPanel extends javax.swing.JPanel {
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPassword.setText("Password:");
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("University Portal");
+        lblTitle.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("University Portal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,14 +77,14 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(374, 374, 374))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(342, 342, 342)
                         .addComponent(btnLogin)))
@@ -82,15 +94,15 @@ public class LoginPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addGap(145, 145, 145)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserName)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(btnLogin)
                 .addContainerGap(313, Short.MAX_VALUE))
@@ -98,17 +110,82 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        String errorMessage = fetchErrorMessageForCredentials();
+        if (!errorMessage.isEmpty()){
+            StringBuilder builder = new StringBuilder();
+            builder.append("Please correct following "
+                    + "details to continue -");
+            builder.append("\n");
+            builder.append(errorMessage);        
+            JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        Map<String, String> usernamePasswordMap = new HashMap<>();
+        usernamePasswordMap.put("surbhi", "surbhi123");
+        usernamePasswordMap.put("rutuja", "rutuja123");
+        usernamePasswordMap.put("swaroop_123", "swaroop123");
+        if(!validateCredentials(usernamePasswordMap)) {
+            JOptionPane.showMessageDialog(this, "Invalid Username and Password"
+                    ,"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
       
+        
+        SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
+        mainWorkArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.next(mainWorkArea); 
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    private String fetchErrorMessageForCredentials() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("");
+        builder.append(fetchErrorMessageForUserName());
+        builder.append(fetchErrorMessageForPassword());
+        return builder.toString().trim();    
+    }
+
+    private String fetchErrorMessageForUserName() {
+        String errorMessage = "";
+        if(txtUserName.getText().isEmpty()) {
+            errorMessage = "Please fill the username\n";
+            return errorMessage;
+        }
+        if(!txtUserName.getText().matches("^[a-zA-Z,0-9,.,-,_]+$")){
+            errorMessage = "Username is not valid\n ";
+        }       
+        return errorMessage;
+    }
+
+    private String fetchErrorMessageForPassword() {
+        String errorMessage = "";
+        if(txtPassword.getText().isEmpty()) {
+            errorMessage = "Please fill the password\n";
+        }
+        return errorMessage;
+    }
+
+    private boolean validateCredentials(Map<String, String> usernamePasswordMap) {
+        String usernameInput = txtUserName.getText();
+        String passwordInput = txtPassword.getText(); 
+       
+      
+        if(usernamePasswordMap.containsKey(usernameInput)) {
+            String validPasswordForUsername = usernamePasswordMap.get(usernameInput);
+            if(validPasswordForUsername.equals(passwordInput)) {
+                return true;
+            }
+        }
+        return false;   
+    }
 }

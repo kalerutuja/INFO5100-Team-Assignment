@@ -115,6 +115,7 @@ public class StudentProfile {
         return coList.get(randomIndex);
     }
 
+
     public Transcript getTranscript() {
         return transcript;
     }
@@ -123,6 +124,7 @@ public class StudentProfile {
         return employmenthistory;
     }
     
+
     public boolean hasValidInternship() {
         return employmenthistory.hasValidInternship();
     }

@@ -7,8 +7,10 @@ package info5100.university.example.College;
 
 import info5100.university.example.CourseSchedule.CourseSchedule;
 import info5100.university.example.Department.Department;
+import info5100.university.example.Persona.StudentProfile;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -26,7 +28,7 @@ public class College {
         this.name = name;
         departmentList = new ArrayList<Department>();
     }
-     public void addNewDepartment(Department department){
+    public void addNewDepartment(Department department){
          departmentList.add(department);
      }
     public int calculateRevenuesBySemester(String sem) {
@@ -35,7 +37,6 @@ public class College {
           sum=sum+d.calculateRevenuesBySemester(sem);
       }
       return sum;
-
     }
 
     public void printRevenueBySemester(String semester) {
@@ -56,13 +57,17 @@ public class College {
             d.printAllTeacherRatingsBySemester(semester);
         }
     }
-
+   
+    
+    
     @Override
     public String toString() {
         return "College{" + "name=" + name + ", departmentList=" + departmentList + '}';
     }
-    
-    
-    
 
+    public List<StudentProfile> getAllStudents() {
+        List<StudentProfile> students = new ArrayList<>();
+        departmentList.forEach(dep -> students.addAll(dep.getStudentDirectory().getStudentlist()));
+        return students;   
+    }
 }
