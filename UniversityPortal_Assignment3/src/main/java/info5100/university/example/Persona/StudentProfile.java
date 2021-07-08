@@ -12,6 +12,7 @@ import info5100.university.example.Department.Degree;
 import info5100.university.example.Employer.EmployerProfile;
 import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
+import info5100.university.reports.SkillsEnum;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,14 @@ public class StudentProfile {
     Transcript transcript;
     EmploymentHistory employmenthistory;
     Degree degree;
+    List<String> skillSet;
 
     public StudentProfile(Person p) {
 
         person = p;
         transcript = new Transcript(this);
         employmenthistory = new EmploymentHistory(this);
+        assignSkillSet();
     }
 
     public boolean isMatch(String id) {
@@ -132,6 +135,19 @@ public class StudentProfile {
     public int getCredits() {
         return transcript.calculateTotalCredits();
     }
+    
+    private void assignSkillSet() {
+        this.skillSet = new ArrayList<>();
+        
+        for (int i = 0; i < 4; i++) {
+            this.skillSet.add(SkillsEnum.getRandomSkill().toString());
+        }
+    }
 
+    public List<String> getSkillSet() {
+        return skillSet;
+    }
+    
+    
     
 }

@@ -55,6 +55,11 @@ public class SummaryPanel extends javax.swing.JPanel {
         });
 
         btnSkillReport.setText("Skill Report");
+        btnSkillReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkillReportActionPerformed(evt);
+            }
+        });
 
         btnCourseRating.setText("Course Rating");
 
@@ -102,6 +107,14 @@ public class SummaryPanel extends javax.swing.JPanel {
         layout.next(workArea);
       
     }//GEN-LAST:event_btnGPAReportActionPerformed
+
+    private void btnSkillReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkillReportActionPerformed
+        
+        Skill_Report skillReport = new Skill_Report(workArea,university);
+        workArea.add("Skill_Report", skillReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnSkillReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,19 @@
  */
 package UserInterface;
 
+import info5100.university.example.Persona.StudentProfile;
+import info5100.university.example.University.University;
+import info5100.university.reports.SkillsEnum;
+import java.awt.CardLayout;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author swaroopgupta
@@ -14,8 +27,17 @@ public class Skill_Report extends javax.swing.JPanel {
     /**
      * Creates new form GPA_Report
      */
-    public Skill_Report() {
+    JPanel workArea;
+    University university;
+    
+    public Skill_Report(JPanel workArea,University university) {
         initComponents();
+        
+        this.workArea = workArea;
+        this.university = university;
+      
+        refreshTable();
+        
     }
 
     /**
@@ -68,6 +90,11 @@ public class Skill_Report extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblSkill_Report);
 
         btnBack.setText("Back<<");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,6 +123,14 @@ public class Skill_Report extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        
+        SummaryPanel sp = new SummaryPanel(workArea,university);
+        workArea.add("SummaryPanel", sp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea); 
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -103,4 +138,39 @@ public class Skill_Report extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSkill_Report;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        // show only top 5 skils that got internship?
+        DefaultTableModel model = (DefaultTableModel)tblSkill_Report.getModel();
+        model.setRowCount(0);
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        HashMap<String, Integer> resultMap = generateTopSKillsReportData();
+        
+        resultMap.entrySet().stream().
+                sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).
+                forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+        
+        for (Map.Entry<String, Integer> en :
+             sortedMap.entrySet()) {// only top 5 has to be taken
+            Object row[] = new Object[2];
+            row[0]= en.getKey();
+            row[1]=en.getValue();
+            model.addRow(row);
+        }
+
+    }
+    
+    private HashMap<String, Integer> generateTopSKillsReportData(){
+        HashMap<String, Integer> resultMap = new HashMap<>();
+        int skillCount = 0;
+        for (SkillsEnum skill : SkillsEnum.values()) { 
+            for(StudentProfile student : this.university.getAllStudents()){
+                if(student.getSkillSet().contains(skill)){
+                    skillCount++;
+                }
+            }
+            resultMap.put(skill.toString(), skillCount);
+        }
+        return resultMap;
+    }
 }
