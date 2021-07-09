@@ -5,9 +5,15 @@
  */
 package UserInterface;
 
+import info5100.university.example.Department.Department;
+import info5100.university.example.Persona.Faculty.FacultyDirectory;
+import info5100.university.example.Persona.Faculty.FacultyProfile;
+import info5100.university.example.Persona.StudentDirectory;
+import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import java.awt.CardLayout;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,11 +29,15 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     JPanel mainWorkArea;
     University university;
+    Map<String, String> usernamePasswordMap;
+    Map<String, Object> usernameProfileMap;
     public LoginPanel(JPanel mainWorkArea,University university) {
         initComponents();
         this.university = university;
         this.mainWorkArea = mainWorkArea;
-        
+        usernamePasswordMap = new HashMap();
+        usernameProfileMap = new HashMap();
+        populateUserMaps();       
     }
 
     /**
@@ -39,77 +49,152 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnLogin = new javax.swing.JButton();
-        lblUserName = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
-        txtUserName = new javax.swing.JTextField();
+        rSButtonPaneBeanInfo1 = new rojerusan.RSButtonPaneBeanInfo();
+        rSButtonIconDBeanInfo1 = new rojerusan.RSButtonIconDBeanInfo();
+        rSButtonIconDBeanInfo2 = new rojerusan.RSButtonIconDBeanInfo();
+        rSButtonMetroBeanInfo1 = new rojerusan.RSButtonMetroBeanInfo();
+        jPanel1 = new javax.swing.JPanel();
+        lblImage = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
+        txtUserName = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        rSButtonHover2 = new rojerusan.RSButtonHover();
+        lblUsername = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        lblRoles = new javax.swing.JLabel();
+        cmbRoles = new javax.swing.JComboBox<>();
 
-        btnLogin.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnLogin.setText("Login");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 181, 204));
+
+        lblImage.setIcon(new javax.swing.ImageIcon("/Users/Surbhi/university3.png")); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(lblImage)
+                .addGap(24, 24, 24))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(lblImage)
+                .addContainerGap(280, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -3, 310, 700));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblTitle.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("University Performance Measure");
+
+        txtUserName.setForeground(new java.awt.Color(153, 153, 153));
+        txtUserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                txtUserNameActionPerformed(evt);
             }
         });
 
-        lblUserName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUserName.setText("Username:");
+        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
-        lblPassword.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPassword.setText("Password:");
+        rSButtonHover2.setBackground(new java.awt.Color(255, 255, 255));
+        rSButtonHover2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 181, 204)));
+        rSButtonHover2.setText("Login");
+        rSButtonHover2.setColorText(new java.awt.Color(0, 181, 204));
+        rSButtonHover2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover2ActionPerformed(evt);
+            }
+        });
 
-        lblTitle.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("University Portal");
+        lblUsername.setText("Username: ");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUserName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(374, 374, 374))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(btnLogin)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        lblPassword.setText("Password: ");
+
+        lblRoles.setText("Choose Roles: ");
+
+        cmbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Faculty", "Student" }));
+        cmbRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRolesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsername)
+                            .addComponent(lblPassword)
+                            .addComponent(lblRoles))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
                 .addComponent(lblTitle)
-                .addGap(145, 145, 145)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUserName)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRoles)
+                    .addComponent(cmbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(btnLogin)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
         );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 570, 690));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void rSButtonHover2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover2ActionPerformed
+        // TODO add your handling code here:
         String errorMessage = fetchErrorMessageForCredentials();
         if (!errorMessage.isEmpty()){
             StringBuilder builder = new StringBuilder();
@@ -120,29 +205,58 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
             return;
         } 
-        Map<String, String> usernamePasswordMap = new HashMap<>();
-        usernamePasswordMap.put("surbhi", "surbhi123");
-        usernamePasswordMap.put("r", "r");
-        usernamePasswordMap.put("swaroop_123", "swaroop123");
-        if(!validateCredentials(usernamePasswordMap)) {
+
+        if(!validateCredentials()) {
             JOptionPane.showMessageDialog(this, "Invalid Username and Password"
                     ,"Error",JOptionPane.ERROR_MESSAGE);
             return;
+        } 
+        String role = (String) cmbRoles.getSelectedItem();
+        if("Admin".equals(role)) {
+            SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
+            mainWorkArea.add("SummaryPanel", sp);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea); 
+        } else if ("Student".equals(role)) {
+            String username = txtUserName.getText();
+            StudentProfile sp = (StudentProfile) usernameProfileMap.get(username);
+            
+            StudentPanel studentPanel = new StudentPanel(mainWorkArea,sp);
+            mainWorkArea.add("StudentPanel", studentPanel);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea); 
+            
+            
+        } else {
+            String username = txtUserName.getText();
+            FacultyProfile fp = (FacultyProfile) usernameProfileMap.get(username);
+            FacultyPanel facultyPanel = new FacultyPanel(mainWorkArea,fp);
+            mainWorkArea.add("FacultyPanel", facultyPanel);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea);
         }
-      
-        
-        SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
-        mainWorkArea.add("SummaryPanel", sp);
-        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-        layout.next(mainWorkArea); 
-    }//GEN-LAST:event_btnLoginActionPerformed
+
+    }//GEN-LAST:event_rSButtonHover2ActionPerformed
+
+    private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRolesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JComboBox<String> cmbRoles;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblRoles;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblUserName;
+    private javax.swing.JLabel lblUsername;
+    private rojerusan.RSButtonHover rSButtonHover2;
+    private rojerusan.RSButtonIconDBeanInfo rSButtonIconDBeanInfo1;
+    private rojerusan.RSButtonIconDBeanInfo rSButtonIconDBeanInfo2;
+    private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
+    private rojerusan.RSButtonPaneBeanInfo rSButtonPaneBeanInfo1;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
@@ -175,17 +289,44 @@ public class LoginPanel extends javax.swing.JPanel {
         return errorMessage;
     }
 
-    private boolean validateCredentials(Map<String, String> usernamePasswordMap) {
+    private boolean validateCredentials() {
         String usernameInput = txtUserName.getText();
         String passwordInput = txtPassword.getText(); 
-       
-      
+        String role = (String)cmbRoles.getSelectedItem();
+        if("Admin".equals(role)) {
+            return usernameInput.equals("admin") 
+                    && passwordInput.equals("password");
+        }
         if(usernamePasswordMap.containsKey(usernameInput)) {
-            String validPasswordForUsername = usernamePasswordMap.get(usernameInput);
-            if(validPasswordForUsername.equals(passwordInput)) {
+            String pass = usernamePasswordMap.get(usernameInput);
+            if(pass.equals(passwordInput)) {
                 return true;
             }
         }
         return false;   
+    }
+
+    private void populateUserMaps() {
+        List<Department> dptList = university.getAllDepartments();
+        dptList.forEach(dpt-> {
+            StudentDirectory sd = dpt.getStudentDirectory();
+            List<StudentProfile> spList = sd.getStudentlist();
+            spList.forEach(sp->{
+                String username = sp.getPerson().getId();
+                usernamePasswordMap.put(username
+                        , sp.getPerson().getPassword());               
+                usernameProfileMap.put(username, sp);
+            });
+            FacultyDirectory fd = dpt.getFacultydirectory();
+            List<FacultyProfile> fpList = fd.getTeacherlist();
+            fpList.forEach(faculty->{
+                String username = faculty.getPerson().getId();
+                usernamePasswordMap.put(username
+                        , faculty.getPerson().getPassword());               
+                usernameProfileMap.put(username, faculty);          
+            });
+            
+            
+        });
     }
 }

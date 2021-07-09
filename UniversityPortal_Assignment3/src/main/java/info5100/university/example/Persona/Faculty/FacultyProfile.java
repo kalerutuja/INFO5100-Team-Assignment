@@ -73,5 +73,9 @@ public class FacultyProfile {
         }
 
     }
+
+    public Person getPerson() {
+        return person;
+    }
     
 }

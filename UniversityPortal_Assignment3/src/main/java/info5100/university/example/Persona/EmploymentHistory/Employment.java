@@ -28,6 +28,5 @@ public class Employment {
     
     public void addRelevantCourseOffer(CourseOffer co) {
         relevantcourseoffers.add(co);
-    }
-    
+    } 
 }

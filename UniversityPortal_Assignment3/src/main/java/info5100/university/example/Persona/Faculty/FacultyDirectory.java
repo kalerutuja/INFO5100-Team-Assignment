@@ -59,5 +59,9 @@ public class FacultyDirectory {
         int randomIndex = (int)Math.random()*count;
         return teacherlist.get(randomIndex);
     }
+
+    public ArrayList<FacultyProfile> getTeacherlist() {
+        return teacherlist;
+    }
     
 }

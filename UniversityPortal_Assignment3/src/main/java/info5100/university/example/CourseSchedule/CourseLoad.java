@@ -7,6 +7,7 @@ package info5100.university.example.CourseSchedule;
 
 import info5100.university.example.CourseCatalog.Course;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,11 @@ public class CourseLoad {
         seatassignments = new ArrayList<SeatAssignment>();
         semester = s;
     }
+
+    public String getSemester() {
+        return semester;
+    }
+    
     public SeatAssignment newSeatAssignment(CourseOffer co){
         
         Seat seat = co.getEmptySeat(); // seat linked to courseoffer.
@@ -73,7 +79,9 @@ public class CourseLoad {
             result.add(sa.seat.getCourseOffer());
         }
         return result;
-    }
+    }   
 
-    
+    public List<SeatAssignment> getSeatAssignments() {
+        return seatassignments;  
+    }
 }

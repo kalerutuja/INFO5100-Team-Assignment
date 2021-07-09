@@ -7,6 +7,7 @@ package info5100.university.example.Persona;
 
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseSchedule.CourseLoad;
+import info5100.university.example.CourseSchedule.SeatAssignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,12 +23,10 @@ public class Transcript {
     
     public Transcript(StudentProfile sp){
         student = sp;
-        courseloadlist = new HashMap<String, CourseLoad>();
-        
+        courseloadlist = new HashMap<String, CourseLoad>();  
     }
     
     public CourseLoad newCourseLoad(String sem){
-        
         currentcourseload = new CourseLoad(sem);
         courseloadlist.put(sem, currentcourseload);
         return currentcourseload;
@@ -79,7 +78,7 @@ public class Transcript {
         for(CourseLoad cl: courseloadlist.values()){
             result.addAll(cl.getCoursesTaken());
         }
-         return result;
+        return result;
     }
 
     int calculateTotalCredits() {
@@ -88,5 +87,14 @@ public class Transcript {
             totalCreditHours = totalCreditHours + cl.getSemesterCreditHours();
         }
         return totalCreditHours;
+    }
+    
+    
+    public ArrayList<SeatAssignment> getSeatAssignments(){
+        ArrayList<SeatAssignment> result = new ArrayList<>();
+        for(CourseLoad cl: courseloadlist.values()){
+            result.addAll(cl.getSeatAssignments());
+        }
+        return result;
     }
 }
