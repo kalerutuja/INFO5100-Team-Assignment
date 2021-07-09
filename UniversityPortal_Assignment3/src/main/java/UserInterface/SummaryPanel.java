@@ -39,6 +39,7 @@ public class SummaryPanel extends javax.swing.JPanel {
         btnCourse_Internships = new javax.swing.JButton();
         btnSkillReport = new javax.swing.JButton();
         btnCourseRating = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         btnGPAReport.setText("Report for GPA v/s Industrial Success");
         btnGPAReport.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +59,13 @@ public class SummaryPanel extends javax.swing.JPanel {
 
         btnCourseRating.setText("Course Rating");
 
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,12 +77,18 @@ public class SummaryPanel extends javax.swing.JPanel {
                     .addComponent(btnSkillReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCourse_Internships, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCourseRating, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(35, 35, 35)
+                .addComponent(btnLogout)
+                .addGap(74, 74, 74)
                 .addComponent(btnGPAReport)
                 .addGap(42, 42, 42)
                 .addComponent(btnCourse_Internships)
@@ -99,11 +113,19 @@ public class SummaryPanel extends javax.swing.JPanel {
       
     }//GEN-LAST:event_btnGPAReportActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        LoginPanel loginPanel = new LoginPanel(workArea,university);
+        workArea.add("LoginPanel", loginPanel);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCourseRating;
     private javax.swing.JButton btnCourse_Internships;
     private javax.swing.JButton btnGPAReport;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSkillReport;
     // End of variables declaration//GEN-END:variables
 }

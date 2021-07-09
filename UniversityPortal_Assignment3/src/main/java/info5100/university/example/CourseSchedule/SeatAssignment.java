@@ -58,7 +58,5 @@ public class SeatAssignment {
 
     public void setFacultyEval(int facultyEval) {
         this.facultyEval = facultyEval;
-    }
-    
-    
+    } 
 }
