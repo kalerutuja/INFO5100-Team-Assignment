@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class EmploymentHistory {
     ArrayList<Employment> employments;
     StudentProfile studentProfile;
+    
     public EmploymentHistory(StudentProfile sp){
         studentProfile = sp;
         employments = new ArrayList();
@@ -27,6 +28,10 @@ public class EmploymentHistory {
         return ne;
     }
 
+    public ArrayList<Employment> getEmployments() {
+        return employments;
+    }
+    
     public boolean isEmpty() {
         return employments.isEmpty();
     }
@@ -35,12 +40,13 @@ public class EmploymentHistory {
         if(employments.isEmpty()) {
             return false;
         }
-        
+
         if(studentProfile.getCredits() >= 16) {
             return true;
         }else {
             return false;
         }
     }
+
     
 }

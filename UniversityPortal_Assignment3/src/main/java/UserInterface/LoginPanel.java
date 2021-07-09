@@ -205,6 +205,7 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
             return;
         } 
+
         if(!validateCredentials()) {
             JOptionPane.showMessageDialog(this, "Invalid Username and Password"
                     ,"Error",JOptionPane.ERROR_MESSAGE);

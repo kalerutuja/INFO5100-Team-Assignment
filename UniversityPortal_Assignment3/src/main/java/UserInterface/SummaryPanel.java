@@ -58,6 +58,11 @@ public class SummaryPanel extends javax.swing.JPanel {
         btnSkillReport.setText("Skill Report");
 
         btnCourseRating.setText("Course Rating");
+        btnCourseRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourseRatingActionPerformed(evt);
+            }
+        });
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +106,11 @@ public class SummaryPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCourse_InternshipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourse_InternshipsActionPerformed
-        // TODO add your handling code here:
+        
+        CoursesInternshipReport CoursesInternshipReport = new CoursesInternshipReport(workArea,university);
+        workArea.add("CoursesInternshipReport", CoursesInternshipReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_btnCourse_InternshipsActionPerformed
 
     private void btnGPAReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGPAReportActionPerformed
@@ -113,12 +122,21 @@ public class SummaryPanel extends javax.swing.JPanel {
       
     }//GEN-LAST:event_btnGPAReportActionPerformed
 
+    private void btnCourseRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseRatingActionPerformed
+        // TODO add your handling code here:
+        CoursesRatingReport courseReport = new CoursesRatingReport(workArea,university);
+        workArea.add("CoursesRatingReport", courseReport);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnCourseRatingActionPerformed
+
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         LoginPanel loginPanel = new LoginPanel(workArea,university);
         workArea.add("LoginPanel", loginPanel);
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.next(workArea);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
