@@ -7,7 +7,11 @@ package UserInterface;
 
 import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
+import info5100.university.example.Persona.StudentProfile;
+import info5100.university.example.University.University;
+import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,13 +25,18 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
      * Creates new form EmploymentHistoryPanel
      */
     JPanel mainworkArea;
-    EmploymentHistory eh;
-    public EmploymentHistoryPanel( JPanel mainworkArea,EmploymentHistory employmentHistory) {
+    EmploymentHistory employmentHistory;
+    StudentProfile studentProfile;
+    University university;
+    public EmploymentHistoryPanel( JPanel mainworkArea,EmploymentHistory employmentHistory,
+            StudentProfile studentProfile, 
+            University university) {
         initComponents();
         this.mainworkArea = mainworkArea;
-        this.eh = employmentHistory;
-        refreshTable();
-        
+        this.employmentHistory = employmentHistory;
+        this.studentProfile = studentProfile;
+        this.university = university;
+        refreshTable(); 
     }
 
     /**
@@ -42,7 +51,12 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployment = new javax.swing.JTable();
+        btnEmploymentDetails = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Employment History");
 
         tblEmployment.setModel(new javax.swing.table.DefaultTableModel(
@@ -58,6 +72,13 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblEmployment);
 
+        btnEmploymentDetails.setText("Employment Details");
+        btnEmploymentDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmploymentDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,8 +90,10 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEmploymentDetails)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,12 +102,31 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(btnEmploymentDetails)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEmploymentDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmploymentDetailsActionPerformed
+        int selectedRowIndex = tblEmployment.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(null, " Please select a row! ", 
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }  
+        DefaultTableModel model = (DefaultTableModel) tblEmployment.getModel(); 
+        Employment e = (Employment)model.getValueAt(selectedRowIndex, 0);
+  
+        EmploymentDetailsJPanel edjp = new EmploymentDetailsJPanel(mainworkArea, e, studentProfile, university);
+        mainworkArea.add("EmploymentDetailsJPanel", edjp);
+        CardLayout layout = (CardLayout) mainworkArea.getLayout();
+        layout.next(mainworkArea);  
+    }//GEN-LAST:event_btnEmploymentDetailsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEmploymentDetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEmployment;
@@ -93,10 +135,10 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
     private void refreshTable() {
         DefaultTableModel model = (DefaultTableModel) tblEmployment.getModel();
         model.setRowCount(0);
-        List<Employment> result =  eh.getEmployments();
+        List<Employment> result =  employmentHistory.getEmployments();
         for (Employment e: result){
                 Object row[] = new Object[4];
-                row[0] = e.getJob();
+                row[0] = e;
                 row[1] = e.getStartDate();
                 row[2] = e.getEndDate();
                 row[3] = e.getEmployerProfile().getName();

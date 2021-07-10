@@ -105,8 +105,8 @@ public class StudentProfile {
        return requiredCoursesReqMet && creditHoursReqMet;
     }
     
-    public Employment newEmployment(String job, EmployerProfile ep) {
-        return employmenthistory.newEmployment(job, ep);
+    public Employment newEmployment(String job, EmployerProfile ep, String startDate, String endDate) {
+        return employmenthistory.newEmployment(job, ep, startDate,endDate);
     }
 
     public CourseOffer pickRandomCourseOffer() {

@@ -23,6 +23,16 @@ public class Employment {
     Employment nextemployment;  //next job so they are in a sequence 
     EmployerProfile employerProfile;
 
+    
+    public Employment(String j, EmployerProfile employerProfile,
+            String startDate, String endDate){
+        this.employerProfile = employerProfile;
+        relevantcourseoffers = new ArrayList();   
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.job = j;
+    }
+    
     public String getStartDate() {
         return startDate;
     }
@@ -78,14 +88,7 @@ public class Employment {
     public void setEmployerProfile(EmployerProfile employerProfile) {
         this.employerProfile = employerProfile;
     }
-    
-    
-    
-    public Employment(String j, EmployerProfile employerProfile){
-        this.employerProfile = employerProfile;
-        relevantcourseoffers = new ArrayList();    
-    }
-    
+ 
     public void addRelevantCourseOffer(CourseOffer co) {
         relevantcourseoffers.add(co);
     } 
@@ -98,6 +101,9 @@ public class Employment {
         this.job = job;
     }
     
-    
-    
+    @Override
+    public String toString() {
+        return job;
+    }
+  
 }

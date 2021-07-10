@@ -122,6 +122,11 @@ public class LoginPanel extends javax.swing.JPanel {
         });
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,6 +189,52 @@ public class LoginPanel extends javax.swing.JPanel {
     private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRolesActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String errorMessage = fetchErrorMessageForCredentials();
+        if (!errorMessage.isEmpty()){
+            StringBuilder builder = new StringBuilder();
+            builder.append("Please correct following "
+                    + "details to continue -");
+            builder.append("\n");
+            builder.append(errorMessage);        
+            JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+
+        if(!validateCredentials()) {
+            JOptionPane.showMessageDialog(this, "Invalid Username and Password"
+                    ,"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        String role = (String) cmbRoles.getSelectedItem();
+        if("Admin".equals(role)) {
+            SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
+            mainWorkArea.add("SummaryPanel", sp);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea); 
+        } else if ("Student".equals(role)) {
+            String username = txtUserName.getText();
+            StudentProfile sp = (StudentProfile) usernameProfileMap.get(username);
+            
+            StudentPanel studentPanel = new StudentPanel(mainWorkArea,sp,university);
+            mainWorkArea.add("StudentPanel", studentPanel);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea); 
+            
+            
+        } else {
+            String username = txtUserName.getText();
+            FacultyProfile fp = (FacultyProfile) usernameProfileMap.get(username);
+            FacultyPanel facultyPanel = new FacultyPanel(mainWorkArea,fp);
+            mainWorkArea.add("FacultyPanel", facultyPanel);
+            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+            layout.next(mainWorkArea);
+        }
+        
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,8 +22,9 @@ public class EmploymentHistory {
         employments = new ArrayList();
     }
     
-    public Employment newEmployment(String job, EmployerProfile ep){
-        Employment ne = new Employment(job, ep);
+    public Employment newEmployment(String job, EmployerProfile ep, 
+            String startDate, String endDate){
+        Employment ne = new Employment(job, ep, startDate,endDate);
         employments.add(ne);
         return ne;
     }

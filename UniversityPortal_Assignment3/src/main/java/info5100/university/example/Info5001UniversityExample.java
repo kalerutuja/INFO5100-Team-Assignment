@@ -25,11 +25,15 @@ import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import info5100.university.reports.CourseVsInternshipReportDTO;
 import info5100.university.reports.SubReportDTO;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -69,11 +73,11 @@ public class Info5001UniversityExample {
     }
     
     public static University createUniversityData(int nOfCol, 
-            int nOfDep,
-            int nOfFaculty,
-            int nOfCourses,
-            int nOfStudents,
-            int nOfEmployers) {
+        int nOfDep,
+        int nOfFaculty,
+        int nOfCourses,
+        int nOfStudents,
+        int nOfEmployers) {
         Faker faker = new Faker();
         University university = new University(faker.university().name());
         for(int i = 0;i<nOfCol;i++) {
@@ -91,8 +95,7 @@ public class Info5001UniversityExample {
                     fd.newFacultyProfile(p);
                     System.out.println("Faculty Created : " + p.getFullName() 
                             + " with username : " + p.getId() + " with password : " 
-                            + p.getPassword());
-                    
+                            + p.getPassword()); 
                 } 
                 
                 StudentDirectory sd = d.getStudentDirectory();
@@ -130,8 +133,8 @@ public class Info5001UniversityExample {
     }
     
     public static void createCourseOffers(String semesterName, 
-            University university,
-            int nOfSeats) {
+        University university,
+        int nOfSeats) {
         List<Department> dl = university.getAllDepartments();
         dl.forEach(dept -> {
             FacultyDirectory fd = dept.getFacultydirectory();
@@ -160,11 +163,11 @@ public class Info5001UniversityExample {
                 SeatAssignment sa1 = cl.newSeatAssignment(coList.get(0));
                 cl.registerStudent(sa1);
                 
-                float grade1 = random.nextFloat()*4;
+                float grade1 = random.nextInt(50)/10;
                 sa1.setGrade(grade1);
                 SeatAssignment sa2 = cl.newSeatAssignment(coList.get(1));
                 cl.registerStudent(sa2);
-                float grade2 = random.nextFloat()*4;
+                float grade2 = random.nextInt(50)/10;
                 sa2.setGrade(grade2);
             });
         });
@@ -183,14 +186,20 @@ public class Info5001UniversityExample {
             for(int i = 0;i<sl.size();i++) {
                 if(i%randomInt == 0) {
                     StudentProfile sp = sl.get(i);
+                    Date startDate = faker.date().past(random.nextInt(500), TimeUnit.DAYS);
+                    LocalDate startDateLocal = startDate.toInstant()
+                            .atZone(ZoneId.systemDefault()).toLocalDate();
+                    Date endDate = faker.date().future(random.nextInt(500), TimeUnit.DAYS);
+                    LocalDate endDateLocal = endDate.toInstant()
+                            .atZone(ZoneId.systemDefault()).toLocalDate();
                     Employment e = sp.newEmployment(faker.company().profession(),
-                           ed.pickRandomEmployer());
-                    e.addRelevantCourseOffer(sp.pickRandomCourseOffer());       
+                           ed.pickRandomEmployer(), 
+                           startDateLocal.toString(), endDateLocal.toString());
+                    e.addRelevantCourseOffer(sp.pickRandomCourseOffer());
+                    System.out.println("Student Created with employment : " + sp.getPerson().getId());
                 }
-            }
-            
+            }  
+           
         });
-
     }
-
 }
