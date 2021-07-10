@@ -6,6 +6,7 @@
 package info5100.university.example.CourseSchedule;
 
 import info5100.university.example.CourseCatalog.Course;
+import info5100.university.example.Persona.Transcript;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

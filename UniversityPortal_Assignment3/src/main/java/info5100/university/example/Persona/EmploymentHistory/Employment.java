@@ -18,8 +18,68 @@ public class Employment {
     int weight;
     String quality;
     String job;
+    String startDate;
+    String endDate;
     Employment nextemployment;  //next job so they are in a sequence 
     EmployerProfile employerProfile;
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+    
+    public ArrayList<CourseOffer> getRelevantcourseoffers() {
+        return relevantcourseoffers;
+    }
+
+    public void setRelevantcourseoffers(ArrayList<CourseOffer> relevantcourseoffers) {
+        this.relevantcourseoffers = relevantcourseoffers;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public Employment getNextemployment() {
+        return nextemployment;
+    }
+
+    public void setNextemployment(Employment nextemployment) {
+        this.nextemployment = nextemployment;
+    }
+
+    public EmployerProfile getEmployerProfile() {
+        return employerProfile;
+    }
+
+    public void setEmployerProfile(EmployerProfile employerProfile) {
+        this.employerProfile = employerProfile;
+    }
+    
+    
     
     public Employment(String j, EmployerProfile employerProfile){
         this.employerProfile = employerProfile;
@@ -29,4 +89,15 @@ public class Employment {
     public void addRelevantCourseOffer(CourseOffer co) {
         relevantcourseoffers.add(co);
     } 
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+    
+    
+    
 }

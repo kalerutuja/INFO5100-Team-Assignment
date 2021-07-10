@@ -6,9 +6,14 @@
 package UserInterface;
 
 import info5100.university.example.CourseSchedule.SeatAssignment;
+import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.Persona.Transcript;
+import info5100.university.example.University.University;
 import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,11 +25,18 @@ public class CoursesPanel extends javax.swing.JPanel {
      * Creates new form TranscriptsPanel
      */
     JPanel mainWorkArea;
-    SeatAssignment seatAssignment;
-    public CoursesPanel(JPanel mainWorkArea, SeatAssignment seatAssignment) {
+    StudentProfile studentProfile;
+    University university;
+    public CoursesPanel(JPanel mainWorkArea, 
+            StudentProfile studentProfile,
+            University university) {
+       
         initComponents();
         this.mainWorkArea = mainWorkArea;
-        this.seatAssignment = seatAssignment;
+        this.studentProfile = studentProfile;
+        this.university = university;
+        txtStudentID.setText(studentProfile.getPerson().getId());
+        txtCGPA.setText(String.valueOf(studentProfile.getGPA()));
         refreshTable();
     }
 
@@ -38,14 +50,14 @@ public class CoursesPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTrancripts = new javax.swing.JTable();
+        tblTranscripts = new javax.swing.JTable();
         lblCGPA = new javax.swing.JLabel();
         txtCGPA = new javax.swing.JTextField();
         lblStudentID = new javax.swing.JLabel();
         txtStudentID = new javax.swing.JTextField();
         btnCourseDetails = new javax.swing.JButton();
 
-        tblTrancripts.setModel(new javax.swing.table.DefaultTableModel(
+        tblTranscripts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -56,13 +68,19 @@ public class CoursesPanel extends javax.swing.JPanel {
                 "Course Taken", "Grades"
             }
         ));
-        jScrollPane1.setViewportView(tblTrancripts);
+        jScrollPane1.setViewportView(tblTranscripts);
 
         lblCGPA.setText("CGPA: ");
 
         txtCGPA.setEditable(false);
 
         lblStudentID.setText("Student ID: ");
+
+        txtStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIDActionPerformed(evt);
+            }
+        });
 
         btnCourseDetails.setText("Course Details");
         btnCourseDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -115,13 +133,26 @@ public class CoursesPanel extends javax.swing.JPanel {
 
     private void btnCourseDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseDetailsActionPerformed
         // TODO add your handling code here:
-        
-        CourseDetailsPanel cdp = new CourseDetailsPanel(mainWorkArea,seatAssignment);
+        int selectedRowIndex = tblTranscripts.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(null, " Please select a row! ", 
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }  
+        DefaultTableModel model = (DefaultTableModel) tblTranscripts.getModel(); 
+        SeatAssignment selectedSeat = (SeatAssignment)model.getValueAt(selectedRowIndex, 0);
+   
+        CourseDetailsPanel cdp = new CourseDetailsPanel(mainWorkArea,
+                selectedSeat, studentProfile, university);
         mainWorkArea.add("CourseDetailsPanel", cdp);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea); 
         
     }//GEN-LAST:event_btnCourseDetailsActionPerformed
+
+    private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -129,16 +160,20 @@ public class CoursesPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCGPA;
     private javax.swing.JLabel lblStudentID;
-    private javax.swing.JTable tblTrancripts;
+    private javax.swing.JTable tblTranscripts;
     private javax.swing.JTextField txtCGPA;
     private javax.swing.JTextField txtStudentID;
     // End of variables declaration//GEN-END:variables
 
     private void refreshTable() {
-        
-        
-        
-        
-        
+        DefaultTableModel model = (DefaultTableModel) tblTranscripts.getModel();
+        model.setRowCount(0);
+        List<SeatAssignment> result =  studentProfile.getSeatAssignments() ;
+        for (SeatAssignment sa: result){
+                Object row[] = new Object[2];
+                row[0] = sa;
+                row[1] = sa.getGrade();
+                model.addRow(row);
+        }  
     }
 }

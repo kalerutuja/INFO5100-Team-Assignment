@@ -69,7 +69,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 181, 204));
 
-        lblImage.setIcon(new javax.swing.ImageIcon("/Users/Surbhi/university3.png")); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/university3.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -221,7 +221,7 @@ public class LoginPanel extends javax.swing.JPanel {
             String username = txtUserName.getText();
             StudentProfile sp = (StudentProfile) usernameProfileMap.get(username);
             
-            StudentPanel studentPanel = new StudentPanel(mainWorkArea,sp);
+            StudentPanel studentPanel = new StudentPanel(mainWorkArea,sp, university);
             mainWorkArea.add("StudentPanel", studentPanel);
             CardLayout layout = (CardLayout) mainWorkArea.getLayout();
             layout.next(mainWorkArea); 

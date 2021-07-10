@@ -8,12 +8,13 @@ package info5100.university.example.Persona;
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseSchedule.CourseLoad;
 import info5100.university.example.CourseSchedule.CourseOffer;
+import info5100.university.example.CourseSchedule.SeatAssignment;
 import info5100.university.example.Department.Degree;
 import info5100.university.example.Employer.EmployerProfile;
 import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;    
 
 /**
  *
@@ -131,6 +132,10 @@ public class StudentProfile {
 
     public int getCredits() {
         return transcript.calculateTotalCredits();
+    }
+
+    public List<SeatAssignment> getSeatAssignments() {
+        return transcript.getSeatAssignments();
     }
 
     

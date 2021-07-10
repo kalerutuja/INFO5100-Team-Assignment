@@ -142,6 +142,7 @@ public class Info5001UniversityExample {
                 FacultyProfile fp = fd.getFirstAvailable();
                 co.generatSeats(100);
                 fp.AssignAsTeacher(co);
+                co.AssignAsTeacher(fp);
             });
         });
     }
