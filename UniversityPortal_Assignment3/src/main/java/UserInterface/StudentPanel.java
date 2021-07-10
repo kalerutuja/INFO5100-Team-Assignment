@@ -6,6 +6,7 @@
 package UserInterface;
 
 import info5100.university.example.CourseSchedule.SeatAssignment;
+import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
 import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import java.awt.CardLayout;
@@ -23,10 +24,26 @@ public class StudentPanel extends javax.swing.JPanel {
     JPanel mainWorkArea;
     StudentProfile studentProfile;
     University university;
-    public StudentPanel(JPanel mainworkArea, StudentProfile studentProfile) {
+    
+    
+    public StudentPanel(JPanel mainworkArea, StudentProfile studentProfile, University university) {
         initComponents();
-        this.mainWorkArea = mainWorkArea;
+        this.mainWorkArea = mainworkArea;
         this.studentProfile = studentProfile;
+        this.university = university;
+        
+        txtStudent.setText(studentProfile.getPerson().getId());
+    
+        CoursesPanel coursePanel = new CoursesPanel(mainWorkArea,
+                studentProfile, university);
+        JPCourses.add("CoursesPanel", coursePanel);
+        CardLayout coursesLayout = (CardLayout)JPCourses.getLayout();
+        coursesLayout.next(JPCourses);
+        
+        EmploymentHistoryPanel employmentPanel = new EmploymentHistoryPanel(mainWorkArea,studentProfile.getEmploymenthistory());
+        JPEmploymentHistory.add("EmploymentPanel", employmentPanel);
+        CardLayout employmentHistoryLayout = (CardLayout)JPEmploymentHistory.getLayout();
+        employmentHistoryLayout.next(JPEmploymentHistory);   
     }
 
     /**
@@ -40,41 +57,23 @@ public class StudentPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        JPCourses = new javax.swing.JPanel();
         JPEmploymentHistory = new javax.swing.JPanel();
+        JPCourses = new javax.swing.JPanel();
         lblStudent = new javax.swing.JLabel();
         txtStudent = new javax.swing.JTextField();
         btnLogout = new javax.swing.JButton();
 
         jLabel1.setText("Student Information");
 
-        javax.swing.GroupLayout JPCoursesLayout = new javax.swing.GroupLayout(JPCourses);
-        JPCourses.setLayout(JPCoursesLayout);
-        JPCoursesLayout.setHorizontalGroup(
-            JPCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
-        );
-        JPCoursesLayout.setVerticalGroup(
-            JPCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Courses", JPCourses);
-
-        javax.swing.GroupLayout JPEmploymentHistoryLayout = new javax.swing.GroupLayout(JPEmploymentHistory);
-        JPEmploymentHistory.setLayout(JPEmploymentHistoryLayout);
-        JPEmploymentHistoryLayout.setHorizontalGroup(
-            JPEmploymentHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
-        );
-        JPEmploymentHistoryLayout.setVerticalGroup(
-            JPEmploymentHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-        );
-
+        JPEmploymentHistory.setLayout(new java.awt.CardLayout());
         jTabbedPane1.addTab("Employment History", JPEmploymentHistory);
 
+        JPCourses.setLayout(new java.awt.CardLayout());
+        jTabbedPane1.addTab("Courses", JPCourses);
+
         lblStudent.setText("Student ID: ");
+
+        txtStudent.setEditable(false);
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -88,35 +87,38 @@ public class StudentPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(lblStudent)
+                .addGap(61, 61, 61)
+                .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(226, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(lblStudent)
-                        .addGap(64, 64, 64)
-                        .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(btnLogout)
+                        .addGap(85, 85, 85))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnLogout)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStudent)
                     .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );

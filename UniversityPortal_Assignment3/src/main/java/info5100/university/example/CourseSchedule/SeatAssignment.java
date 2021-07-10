@@ -59,4 +59,18 @@ public class SeatAssignment {
     public void setFacultyEval(int facultyEval) {
         this.facultyEval = facultyEval;
     } 
+
+    public CourseLoad getCourseload() {
+        return courseload;
+    }
+
+    public void setCourseload(CourseLoad courseload) {
+        this.courseload = courseload;
+    }
+    
+    @Override
+    public String toString() {
+        return getCourseName();
+    }
+    
 }

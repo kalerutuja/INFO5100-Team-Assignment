@@ -23,4 +23,8 @@ public class EmployerProfile {
         if(name.equals(id)) return true;             //String is an object and can do equal matach
         return false;
     } 
+
+    public Object getName() {
+        return name;
+    }
 }

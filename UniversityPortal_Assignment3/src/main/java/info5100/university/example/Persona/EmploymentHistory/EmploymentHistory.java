@@ -48,5 +48,13 @@ public class EmploymentHistory {
         }
     }
 
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
+
     
 }

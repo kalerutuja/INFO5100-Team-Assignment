@@ -5,6 +5,12 @@
  */
 package UserInterface;
 
+import info5100.university.example.Persona.EmploymentHistory.Employment;
+import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Surbhi
@@ -14,8 +20,14 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
     /**
      * Creates new form EmploymentHistoryPanel
      */
-    public EmploymentHistoryPanel() {
+    JPanel mainworkArea;
+    EmploymentHistory eh;
+    public EmploymentHistoryPanel( JPanel mainworkArea,EmploymentHistory employmentHistory) {
         initComponents();
+        this.mainworkArea = mainworkArea;
+        this.eh = employmentHistory;
+        refreshTable();
+        
     }
 
     /**
@@ -28,22 +40,23 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        lblEmploymentName = new javax.swing.JLabel();
-        lblStartDate = new javax.swing.JLabel();
-        txtEmploymentName = new javax.swing.JTextField();
-        txtStartDate = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmployment = new javax.swing.JTable();
 
         jLabel1.setText("Employment History");
 
-        lblEmploymentName.setText("Employment Name: ");
-
-        lblStartDate.setText("Start Date: ");
-
-        txtStartDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStartDateActionPerformed(evt);
+        tblEmployment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Job Title", "Start Date", "End Date", "Employer Name"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(tblEmployment);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -55,43 +68,39 @@ public class EmploymentHistoryPanel extends javax.swing.JPanel {
                         .addGap(198, 198, 198)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblStartDate)
-                            .addComponent(lblEmploymentName))
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmploymentName, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(txtStartDate))))
-                .addContainerGap(191, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmploymentName)
-                    .addComponent(txtEmploymentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStartDate)
-                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(386, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStartDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblEmploymentName;
-    private javax.swing.JLabel lblStartDate;
-    private javax.swing.JTextField txtEmploymentName;
-    private javax.swing.JTextField txtStartDate;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblEmployment;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) tblEmployment.getModel();
+        model.setRowCount(0);
+        List<Employment> result =  eh.getEmployments();
+        for (Employment e: result){
+                Object row[] = new Object[4];
+                row[0] = e.getJob();
+                row[1] = e.getStartDate();
+                row[2] = e.getEndDate();
+                row[3] = e.getEmployerProfile().getName();
+                model.addRow(row);
+        }    
+    }
 }

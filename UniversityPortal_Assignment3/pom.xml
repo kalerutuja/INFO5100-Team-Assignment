@@ -26,11 +26,6 @@
         </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>
-            <artifactId>RSCalendar</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
             <artifactId>RSFoto_v1.0</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
