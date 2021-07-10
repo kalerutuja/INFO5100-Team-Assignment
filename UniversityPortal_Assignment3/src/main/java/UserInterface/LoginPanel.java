@@ -49,21 +49,17 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rSButtonPaneBeanInfo1 = new rojerusan.RSButtonPaneBeanInfo();
-        rSButtonIconDBeanInfo1 = new rojerusan.RSButtonIconDBeanInfo();
-        rSButtonIconDBeanInfo2 = new rojerusan.RSButtonIconDBeanInfo();
-        rSButtonMetroBeanInfo1 = new rojerusan.RSButtonMetroBeanInfo();
         jPanel1 = new javax.swing.JPanel();
         lblImage = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
-        rSButtonHover2 = new rojerusan.RSButtonHover();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblRoles = new javax.swing.JLabel();
         cmbRoles = new javax.swing.JComboBox<>();
+        btnLogin = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -112,16 +108,6 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         });
 
-        rSButtonHover2.setBackground(new java.awt.Color(255, 255, 255));
-        rSButtonHover2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 181, 204)));
-        rSButtonHover2.setText("Login");
-        rSButtonHover2.setColorText(new java.awt.Color(0, 181, 204));
-        rSButtonHover2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover2ActionPerformed(evt);
-            }
-        });
-
         lblUsername.setText("Username: ");
 
         lblPassword.setText("Password: ");
@@ -134,6 +120,8 @@ public class LoginPanel extends javax.swing.JPanel {
                 cmbRolesActionPerformed(evt);
             }
         });
+
+        btnLogin.setText("Login");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,8 +144,8 @@ public class LoginPanel extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(109, 109, 109)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,8 +165,8 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(238, Short.MAX_VALUE))
         );
 
@@ -193,57 +181,13 @@ public class LoginPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void rSButtonHover2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover2ActionPerformed
-        // TODO add your handling code here:
-        String errorMessage = fetchErrorMessageForCredentials();
-        if (!errorMessage.isEmpty()){
-            StringBuilder builder = new StringBuilder();
-            builder.append("Please correct following "
-                    + "details to continue -");
-            builder.append("\n");
-            builder.append(errorMessage);        
-            JOptionPane.showMessageDialog(this, builder.toString(),"Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
-
-        if(!validateCredentials()) {
-            JOptionPane.showMessageDialog(this, "Invalid Username and Password"
-                    ,"Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
-        String role = (String) cmbRoles.getSelectedItem();
-        if("Admin".equals(role)) {
-            SummaryPanel sp = new SummaryPanel(mainWorkArea,university);
-            mainWorkArea.add("SummaryPanel", sp);
-            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-            layout.next(mainWorkArea); 
-        } else if ("Student".equals(role)) {
-            String username = txtUserName.getText();
-            StudentProfile sp = (StudentProfile) usernameProfileMap.get(username);
-            
-            StudentPanel studentPanel = new StudentPanel(mainWorkArea,sp, university);
-            mainWorkArea.add("StudentPanel", studentPanel);
-            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-            layout.next(mainWorkArea); 
-            
-            
-        } else {
-            String username = txtUserName.getText();
-            FacultyProfile fp = (FacultyProfile) usernameProfileMap.get(username);
-            FacultyPanel facultyPanel = new FacultyPanel(mainWorkArea,fp);
-            mainWorkArea.add("FacultyPanel", facultyPanel);
-            CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-            layout.next(mainWorkArea);
-        }
-
-    }//GEN-LAST:event_rSButtonHover2ActionPerformed
-
     private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRolesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JComboBox<String> cmbRoles;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -252,11 +196,6 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblRoles;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
-    private rojerusan.RSButtonHover rSButtonHover2;
-    private rojerusan.RSButtonIconDBeanInfo rSButtonIconDBeanInfo1;
-    private rojerusan.RSButtonIconDBeanInfo rSButtonIconDBeanInfo2;
-    private rojerusan.RSButtonMetroBeanInfo rSButtonMetroBeanInfo1;
-    private rojerusan.RSButtonPaneBeanInfo rSButtonPaneBeanInfo1;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
@@ -324,9 +263,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 usernamePasswordMap.put(username
                         , faculty.getPerson().getPassword());               
                 usernameProfileMap.put(username, faculty);          
-            });
-            
-            
+            });  
         });
     }
 }
