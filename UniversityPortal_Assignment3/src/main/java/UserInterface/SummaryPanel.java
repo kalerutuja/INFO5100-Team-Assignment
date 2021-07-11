@@ -171,8 +171,6 @@ public class SummaryPanel extends javax.swing.JPanel {
         layout.next(workArea);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCourseRating;
     private javax.swing.JButton btnCourse_Internships;

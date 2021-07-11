@@ -48,8 +48,5 @@ public class FacultyAssignment {
     
     public String getCourseName() {
         return courseoffer.getCourseName();
-    }
-    
-    
-    
+    }   
 }
