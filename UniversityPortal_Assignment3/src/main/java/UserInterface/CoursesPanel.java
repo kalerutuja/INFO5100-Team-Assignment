@@ -197,7 +197,7 @@ public class CoursesPanel extends javax.swing.JPanel {
         String session2 = yearSessionArr2[1];
 
         if(year1.equals(year2)) {
-            return session1.compareTo(session2);
+            return session2.compareTo(session1);
         } else {
             return year1.compareTo(year2);
         }

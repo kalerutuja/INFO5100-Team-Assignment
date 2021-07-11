@@ -101,6 +101,11 @@ public class CourseDetailsPanel extends javax.swing.JPanel {
         txtProfessorName.setEditable(false);
 
         cmbRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        cmbRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRatingActionPerformed(evt);
+            }
+        });
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +248,10 @@ public class CourseDetailsPanel extends javax.swing.JPanel {
     private void txtCourseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCourseNameActionPerformed
+
+    private void cmbRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRatingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRatingActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

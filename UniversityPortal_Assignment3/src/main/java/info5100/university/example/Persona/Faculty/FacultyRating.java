@@ -10,6 +10,7 @@ package info5100.university.example.Persona.Faculty;
  * @author Surbhi
  */
 public class FacultyRating implements Comparable<FacultyRating> {
+    
     FacultyAssignment facultyAssignment;
     Integer courseRating;
 
