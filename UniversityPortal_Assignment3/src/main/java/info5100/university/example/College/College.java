@@ -57,9 +57,7 @@ public class College {
             d.printAllTeacherRatingsBySemester(semester);
         }
     }
-   
-    
-    
+
     @Override
     public String toString() {
         return "College{" + "name=" + name + ", departmentList=" + departmentList + '}';

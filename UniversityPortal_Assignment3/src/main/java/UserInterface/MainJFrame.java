@@ -29,24 +29,24 @@ public class MainJFrame extends javax.swing.JFrame {
         setResizable(true);
         
         university = createUniversityData(1, 2, 20, 15, 50, 30);
-        createCourseOffers("fall2020", university, 100);
-        populateCoursesAndGrades("fall2020", university);
+        createCourseOffers("2020 Fall", university, 100);
+        populateCoursesAndGrades("2020 Fall", university);
         //populateEmploymentHistory(university);
         
-        createCourseOffers("spring2021", university, 100);
-        populateCoursesAndGrades("spring2021", university);
+        createCourseOffers("2021 Spring", university, 100);
+        populateCoursesAndGrades("2021 Spring", university);
         //populateEmploymentHistory(university);
 
-        createCourseOffers("fall2021", university, 100);
-        populateCoursesAndGrades("fall2021", university);
+        createCourseOffers("2021 Fall", university, 100);
+        populateCoursesAndGrades("2021 Fall", university);
         //populateEmploymentHistory(university);
 
-        createCourseOffers("spring2022", university, 100);
-        populateCoursesAndGrades("spring2022", university);
+        createCourseOffers("2022 Spring", university, 100);
+        populateCoursesAndGrades("2022 Spring", university);
         //populateEmploymentHistory(university);
 
-        createCourseOffers("fall2022", university, 100);
-        populateCoursesAndGrades("fall2022", university);
+        createCourseOffers("2022 Fall", university, 100);
+        populateCoursesAndGrades("2022 Fall", university);
         populateEmploymentHistory(university);
         
         setLoginPanel();
