@@ -43,34 +43,6 @@ import java.util.concurrent.TimeUnit;
 public class Info5001UniversityExample {
 
     private static Random random = new Random();
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        University testU = createUniversityData(1, 2, 20, 15, 50, 30);
-        createCourseOffers("fall2020", testU, 100);
-        populateCoursesAndGrades("fall2020", testU);
-        populateEmploymentHistory(testU);
-        
-        createCourseOffers("spring2021", testU, 100);
-        populateCoursesAndGrades("spring2021", testU);
-        populateEmploymentHistory(testU);
-
-        createCourseOffers("fall2021", testU, 100);
-        populateCoursesAndGrades("fall2021", testU);
-        populateEmploymentHistory(testU);
-
-        createCourseOffers("spring2022", testU, 100);
-        populateCoursesAndGrades("spring2022", testU);
-        populateEmploymentHistory(testU);
-
-        createCourseOffers("fall2022", testU, 100);
-        populateCoursesAndGrades("fall2022", testU);
-        populateEmploymentHistory(testU);
-
-    }
     
     public static University createUniversityData(int nOfCol, 
         int nOfDep,

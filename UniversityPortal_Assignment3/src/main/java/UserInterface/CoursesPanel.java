@@ -10,6 +10,7 @@ import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.Persona.Transcript;
 import info5100.university.example.University.University;
 import java.awt.CardLayout;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -61,13 +62,13 @@ public class CoursesPanel extends javax.swing.JPanel {
 
         tblTranscripts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Course Taken", "Grades"
+                "Course Taken", "Grades", "Semester"
             }
         ));
         jScrollPane1.setViewportView(tblTranscripts);
@@ -172,11 +173,33 @@ public class CoursesPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblTranscripts.getModel();
         model.setRowCount(0);
         List<SeatAssignment> result =  studentProfile.getSeatAssignments() ;
+        result.sort((SeatAssignment sa1, SeatAssignment sa2) -> {
+            return compareSemester(sa1, sa2);
+        });
         for (SeatAssignment sa: result){
-                Object row[] = new Object[2];
+                Object row[] = new Object[3];
                 row[0] = sa;
                 row[1] = sa.getGrade();
+                row[2] = sa.getCourseload().getSemester();
                 model.addRow(row);
         }  
+    }
+    
+    public int compareSemester(SeatAssignment sa1, SeatAssignment sa2) {
+        String semester1 = sa1.getCourseload().getSemester();
+        String[] yearSessionArr1 = semester1.split(" ");
+        String year1 = yearSessionArr1[0];
+        String session1 = yearSessionArr1[1];
+
+        String semester2 = sa2.getCourseload().getSemester();
+        String[] yearSessionArr2 = semester2.split(" ");
+        String year2 = yearSessionArr2[0];
+        String session2 = yearSessionArr2[1];
+
+        if(year1.equals(year2)) {
+            return session1.compareTo(session2);
+        } else {
+            return year1.compareTo(year2);
+        }
     }
 }
