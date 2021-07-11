@@ -26,7 +26,8 @@ import java.util.Random;
 public class CourseRatingData {
 
     String courseNumber;
-    float rating = 0.0f;
+//    float rating = 0.0f;
+    int rating = 0;
     int studentsRated = 0;
     private static Random random = new Random();
 
@@ -40,7 +41,7 @@ public class CourseRatingData {
         this.studentsRated = studentsRated;
     }
 
-    public float getCourseRating() {
+    public int getCourseRating() {
         return rating;
     }
 
@@ -52,7 +53,7 @@ public class CourseRatingData {
         this.courseNumber = courseNumber;
     }
 
-    public void setCourseRating(float rating) {
+    public void setCourseRating(int rating) {
         this.rating = rating;
     }
 
