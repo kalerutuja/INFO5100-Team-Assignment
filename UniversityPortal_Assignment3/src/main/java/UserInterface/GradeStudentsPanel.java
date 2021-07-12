@@ -53,6 +53,8 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
         btnChanges = new javax.swing.JButton();
         cmbGrades = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         lblCourseSelection.setText("Select Course :");
 
         lblStudentSelection.setText("Select Student :");
@@ -88,7 +90,7 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addGap(202, 202, 202)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -104,7 +106,7 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(btnChanges)))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

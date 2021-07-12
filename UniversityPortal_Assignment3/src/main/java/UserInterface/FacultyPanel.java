@@ -57,6 +57,8 @@ public class FacultyPanel extends javax.swing.JPanel {
         FacultyProfilePanel = new javax.swing.JPanel();
         JPGradeStudentsPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
