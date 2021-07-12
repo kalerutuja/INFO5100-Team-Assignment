@@ -87,8 +87,12 @@ public class FacultyProfile {
     public Set<String> getAllCoursesByFaculty(){
         Set<String> courseSet = new HashSet<>();
         for(FacultyAssignment fa : this.getFacultyassignments()){
-            if(fa.getCourseoffer().getCourseSchedule().getSemester().equalsIgnoreCase("2021 Fall"))
-                courseSet.add(fa.getCourseoffer().getCourse().getCourseNumber());
+            if(fa.getCourseoffer().getCourseSchedule().getSemester().equalsIgnoreCase("2021 Fall")){
+                if(fa.getCourseoffer().getSeatAssignmentList() != null && fa.getCourseoffer().getSeatAssignmentList().size() > 0){
+                    System.out.println("studenst enolled count : " + fa.getCourseoffer().getSeatAssignmentList().size());
+                    courseSet.add(fa.getCourseoffer().getCourse().getCourseNumber());
+                }       
+            }
         }
         System.out.println("coursesList for faculty : " + courseSet);
         return courseSet;

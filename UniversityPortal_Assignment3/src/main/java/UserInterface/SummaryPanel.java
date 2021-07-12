@@ -40,6 +40,7 @@ public class SummaryPanel extends javax.swing.JPanel {
         btnGPAReport = new javax.swing.JButton();
         btnCourse_Internships = new javax.swing.JButton();
         btnCourseRating = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 255));
 
@@ -102,6 +103,11 @@ public class SummaryPanel extends javax.swing.JPanel {
                 .addGap(58, 58, 58))
         );
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("University Analytics Dashboard");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,21 +115,26 @@ public class SummaryPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(31, 31, 31)
                         .addComponent(btnLogout))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addGap(200, 200, 200)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(btnLogout)
-                .addGap(71, 71, 71)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(67, 67, 67)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,6 +175,7 @@ public class SummaryPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCourse_Internships;
     private javax.swing.JButton btnGPAReport;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,7 +38,10 @@ public class FacultyPanel extends javax.swing.JPanel {
         CardLayout coursesLayout = (CardLayout)JPGradeStudentsPanel.getLayout();
         coursesLayout.next(JPGradeStudentsPanel);
        
-
+        FacultyProfilePanel facultyProfilePanel = new FacultyProfilePanel(mainWorkArea, facultyProfile);
+        JPFacultyProfilePanel.add("FacultyProfilePanel",facultyProfilePanel);
+        CardLayout facultyProfileLayout = (CardLayout)JPFacultyProfilePanel.getLayout();
+        facultyProfileLayout.next(JPFacultyProfilePanel);
         
     }
 
@@ -54,7 +57,7 @@ public class FacultyPanel extends javax.swing.JPanel {
         btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        FacultyProfilePanel = new javax.swing.JPanel();
+        JPFacultyProfilePanel = new javax.swing.JPanel();
         JPGradeStudentsPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(204, 255, 255));
@@ -72,18 +75,8 @@ public class FacultyPanel extends javax.swing.JPanel {
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 255, 255));
 
-        javax.swing.GroupLayout FacultyProfilePanelLayout = new javax.swing.GroupLayout(FacultyProfilePanel);
-        FacultyProfilePanel.setLayout(FacultyProfilePanelLayout);
-        FacultyProfilePanelLayout.setHorizontalGroup(
-            FacultyProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
-        );
-        FacultyProfilePanelLayout.setVerticalGroup(
-            FacultyProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Faculty Profile", FacultyProfilePanel);
+        JPFacultyProfilePanel.setLayout(new java.awt.CardLayout());
+        jTabbedPane1.addTab("Course taught", JPFacultyProfilePanel);
 
         JPGradeStudentsPanel.setLayout(new java.awt.CardLayout());
         jTabbedPane1.addTab("Grade Students", JPGradeStudentsPanel);
@@ -130,7 +123,7 @@ public class FacultyPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel FacultyProfilePanel;
+    private javax.swing.JPanel JPFacultyProfilePanel;
     private javax.swing.JPanel JPGradeStudentsPanel;
     private javax.swing.JButton btnLogout;
     private javax.swing.JTabbedPane jTabbedPane1;

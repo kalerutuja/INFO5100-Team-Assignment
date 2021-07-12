@@ -105,23 +105,23 @@ public class GPA_Report extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
+                        .addGap(198, 198, 198)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(76, 76, 76)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(btnBack)
-                .addGap(1, 1, 1)
+                .addGap(18, 18, 18)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

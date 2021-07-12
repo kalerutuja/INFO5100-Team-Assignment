@@ -32,7 +32,7 @@ public class StudentPanel extends javax.swing.JPanel {
         this.studentProfile = studentProfile;
         this.university = university;
         
-        txtStudent.setText(studentProfile.getPerson().getId());
+        txtStudent.setText(studentProfile.getPerson().getFullName());
     
         CoursesPanel coursePanel = new CoursesPanel(mainWorkArea,
                 studentProfile, university);
@@ -71,7 +71,7 @@ public class StudentPanel extends javax.swing.JPanel {
         jLabel1.setText("    Student Information");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblStudent.setText("Student ID: ");
+        lblStudent.setText("Student Name: ");
 
         txtStudent.setEditable(false);
 
@@ -118,10 +118,10 @@ public class StudentPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(lblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(204, 204, 204)
+                        .addComponent(lblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btnLogout)
@@ -130,7 +130,7 @@ public class StudentPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +148,7 @@ public class StudentPanel extends javax.swing.JPanel {
                     .addComponent(txtStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
