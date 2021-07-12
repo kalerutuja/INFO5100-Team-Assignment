@@ -12,8 +12,15 @@
 6.	Investigate how we create digital education systems assuming a university is an intermediary (broker) between students and employers. Their brand is about credibility. How the implementation code will change based on this assumption? 
 7.	Your application must enable the creation and update functions for any of the attributes of concern. 
 
-### Sequence Diagrams
+### Object Model
+![Object_Model](University_Model_ClassD.png)
 
+### Sequence Diagrams
+#### Admin
 ![Admin](University_Sequence_Diagram_Admin.png)
 
+#### Student
 ![Student](University_Sequence_Diagram_Student.png)
+
+#### Faculty
+![Faculty](University_Sequence_Diagram_Faculty.png)
