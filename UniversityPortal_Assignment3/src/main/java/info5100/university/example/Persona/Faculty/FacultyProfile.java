@@ -10,6 +10,8 @@ import info5100.university.example.CourseSchedule.CourseOffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -78,4 +80,17 @@ public class FacultyProfile {
         return person;
     }
     
+    public ArrayList<FacultyAssignment> getFacultyassignments() {
+        return facultyassignments;
+    }
+    
+    public Set<String> getAllCoursesByFaculty(){
+        Set<String> courseSet = new HashSet<>();
+        for(FacultyAssignment fa : this.getFacultyassignments()){
+            if(fa.getCourseoffer().getCourseSchedule().getSemester().equalsIgnoreCase("2021 Fall"))
+                courseSet.add(fa.getCourseoffer().getCourse().getCourseNumber());
+        }
+        System.out.println("coursesList for faculty : " + courseSet);
+        return courseSet;
+    }
 }
