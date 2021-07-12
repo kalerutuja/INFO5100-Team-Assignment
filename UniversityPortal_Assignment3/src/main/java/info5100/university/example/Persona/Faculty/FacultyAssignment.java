@@ -48,5 +48,14 @@ public class FacultyAssignment {
     
     public String getCourseName() {
         return courseoffer.getCourseName();
-    }   
+
+    }
+
+    @Override
+    public String toString() {
+        return "courseoffer=" + courseoffer.getCourseNumber() + ", facultyprofile=" + facultyprofile.getPerson().getFullName() + '}';
+    }
+    
+    
+    s
 }

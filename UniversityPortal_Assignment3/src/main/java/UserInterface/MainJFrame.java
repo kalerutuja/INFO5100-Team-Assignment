@@ -28,9 +28,11 @@ public class MainJFrame extends javax.swing.JFrame {
         setSize(800,600);
         setResizable(true);
         
-        university = createUniversityData(1, 2, 20, 15, 50, 30);
+//        university = createUniversityData(1, 2, 20, 15, s50, 30);
+        university = createUniversityData(1, 1, 5, 5, 15, 30);
         createCourseOffers("2020 Fall", university, 100);
         populateCoursesAndGrades("2020 Fall", university);
+
         //populateEmploymentHistory(university);
         
         createCourseOffers("2021 Spring", university, 100);
@@ -48,6 +50,7 @@ public class MainJFrame extends javax.swing.JFrame {
         createCourseOffers("2022 Fall", university, 100);
         populateCoursesAndGrades("2022 Fall", university);
         populateEmploymentHistory(university);
+
         
         setLoginPanel();
     }

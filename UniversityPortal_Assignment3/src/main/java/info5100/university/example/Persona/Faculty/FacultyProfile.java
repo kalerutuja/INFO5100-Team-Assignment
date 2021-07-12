@@ -5,11 +5,13 @@
  */
 package info5100.university.example.Persona.Faculty;
 
+import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.Persona.*;
 import info5100.university.example.CourseSchedule.CourseOffer;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -76,6 +78,31 @@ public class FacultyProfile {
 
     public Person getPerson() {
         return person;
+    }
+
+    public ArrayList<FacultyAssignment> getFacultyassignments() {
+        return facultyassignments;
+    }
+    
+    public ArrayList<Course> getAllCoursesByfaculty(){
+        ArrayList<Course> courseList = new ArrayList<>();
+        for(FacultyAssignment fa : this.getFacultyassignments()){
+            System.out.println("fa : " + fa);
+            courseList.add(fa.getCourseoffer().getCourse());
+        }
+        //courseoffer.getCourse
+        System.out.println("sd : " + courseList);
+        return courseList;
+    }
+    
+    public Set<String> getAllCoursesByFaculty(){
+        Set<String> courseSet = new HashSet<>();
+        for(FacultyAssignment fa : this.getFacultyassignments()){
+            if(fa.getCourseoffer().getCourseSchedule().getSemester().equalsIgnoreCase("2021 Fall"))
+                courseSet.add(fa.getCourseoffer().getCourse().getCourseNumber());
+        }
+        System.out.println("coursesList for faculty : " + courseSet);
+        return courseSet;
     }
     
 }

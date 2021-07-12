@@ -223,11 +223,10 @@ public class LoginPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) mainWorkArea.getLayout();
             layout.next(mainWorkArea); 
             
-            
         } else {
             String username = txtUserName.getText();
             FacultyProfile fp = (FacultyProfile) usernameProfileMap.get(username);
-            FacultyPanel facultyPanel = new FacultyPanel(mainWorkArea,fp);
+            FacultyPanel facultyPanel = new FacultyPanel(mainWorkArea,fp, university);
             mainWorkArea.add("FacultyPanel", facultyPanel);
             CardLayout layout = (CardLayout) mainWorkArea.getLayout();
             layout.next(mainWorkArea);

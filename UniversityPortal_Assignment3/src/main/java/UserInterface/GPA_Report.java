@@ -5,13 +5,9 @@
  */
 package UserInterface;
 
-import info5100.university.example.College.College;
 import info5100.university.example.University.University;
 import info5100.university.reports.GPAReportData;
-import info5100.university.reports.GradeRange;
-import info5100.university.reports.SubReportDTO;
 import java.awt.CardLayout;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;

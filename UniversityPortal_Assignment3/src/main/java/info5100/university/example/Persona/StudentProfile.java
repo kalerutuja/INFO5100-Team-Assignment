@@ -13,7 +13,6 @@ import info5100.university.example.Department.Degree;
 import info5100.university.example.Employer.EmployerProfile;
 import info5100.university.example.Persona.EmploymentHistory.Employment;
 import info5100.university.example.Persona.EmploymentHistory.EmploymentHistory;
-import java.util.ArrayList;
 import java.util.List;    
 
 /**
@@ -136,6 +135,11 @@ public class StudentProfile {
 
     public List<SeatAssignment> getSeatAssignments() {
         return transcript.getSeatAssignments();
+    }
+
+    @Override
+    public String toString() {
+        return person.getFullName();
     }
 
     

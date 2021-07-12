@@ -9,9 +9,7 @@ import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.Department.Department;
 import info5100.university.example.University.University;
 import info5100.university.reports.CourseRatingData;
-import info5100.university.reports.SubReportDTO;
 import java.awt.CardLayout;
-import static java.lang.Math.random;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -215,6 +212,17 @@ public class CoursesRatingReport extends javax.swing.JPanel {
         ratings[4] = nOfStudents - (int) (Math.random() * nOfStudents);
         for (Department dept : university.getAllDepartments()) {
             courseList = dept.getCourses();
+        }
+            if (courseList != null && courseList.size() > 0) {
+                for (Course c : courseList) {
+                    courseRatingData = new CourseRatingData();
+                    courseRatingData.setCourseNumber(c.getCourseNumber());
+                    courseRatingData.setCourseRating(random.nextInt()* 5);
+                    courseRatingData.setStudentsRated((int) (Math.random() * nOfStudents));
+                    resultList.add(courseRatingData);
+                }
+
+            
         }
         for (int i = 1; i <= 5; i++) {
             courseRatingData = new CourseRatingData();
