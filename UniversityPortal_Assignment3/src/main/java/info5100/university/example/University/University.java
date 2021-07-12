@@ -106,7 +106,7 @@ public class University {
         return gpaReportDataList;
     }
 
-    private List<StudentProfile> getAllStudents() {
+    public List<StudentProfile> getAllStudents() {
         List<StudentProfile> students = new ArrayList<>();
         collegeList.forEach(col -> students.addAll(col.getAllStudents()));
         return students;

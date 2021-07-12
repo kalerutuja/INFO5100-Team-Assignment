@@ -138,5 +138,8 @@ public class StudentProfile {
         return transcript.getSeatAssignments();
     }
 
-    
+    @Override
+    public String toString() {
+        return person.getFullName();
+    }
 }
