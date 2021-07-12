@@ -12,6 +12,7 @@ import info5100.university.example.Persona.StudentProfile;
 import info5100.university.example.University.University;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -32,7 +33,6 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
         this.facultyProfile = facultyProfile;
         this.university = university;
         
-//        List<FacultyAssignment> facultyassignments = facultyProfile.getFacultyassignments();
         populateCoursesCombo();
     }
 
@@ -59,14 +59,13 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
 
         lblStudentSelection.setText("Select Student :");
 
-        cmbCourses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbCourses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCoursesActionPerformed(evt);
             }
         });
 
-        cmbStudents.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStudents.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cmbStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbStudentsActionPerformed(evt);
@@ -82,15 +81,14 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
             }
         });
 
-        cmbGrades.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        cmbGrades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGrades.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(202, 202, 202)
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -106,12 +104,12 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(btnChanges)))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(139, 139, 139)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCourseSelection)
                     .addComponent(cmbCourses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,7 +123,7 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
                     .addComponent(cmbGrades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(btnChanges)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,11 +147,10 @@ public class GradeStudentsPanel extends javax.swing.JPanel {
         
         if(sp != null){
             for(SeatAssignment seatAssignment :  sp.getSeatAssignments()){
-                System.out.println("seatAssignment : " + seatAssignment);   
                 if(seatAssignment.getSeat().getCourseOffer().getCourseNumber().equals(courseSelected)){
-                    System.out.println("before grading : " + seatAssignment.getGrade());
                     seatAssignment.setGrade(grade);
-                    System.out.println("after grading : " + seatAssignment.getGrade());
+                    JOptionPane.showMessageDialog(this, "Graded Successfully !");
+                    break;
                 }
             }
         }

@@ -24,10 +24,10 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
-                      <Component id="lblStudent" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="txtStudent" min="-2" pref="117" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                      <Component id="lblStudent" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtStudent" min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -59,8 +59,8 @@
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblStudent" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtStudent" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStudent" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblStudent">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Student ID: "/>
+        <Property name="text" type="java.lang.String" value="Student Name: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtStudent">

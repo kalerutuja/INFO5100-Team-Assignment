@@ -118,6 +118,7 @@ public class Info5001UniversityExample {
                 co.generatSeats(100);
                 fp.AssignAsTeacher(co);
                 co.AssignAsTeacher(fp);
+                System.out.println("faculty " + fp.getPerson().getId() + " has been assigned course : " + co.getCourseNumber());
             });
         });
     }
