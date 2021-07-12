@@ -13,14 +13,14 @@
 7.	Your application must enable the creation and update functions for any of the attributes of concern. 
 
 ### Object Model
-![Object_Model](University_Model_ClassD.png)
+![Object_Model](files/University_Model_ClassD.png)
 
 ### Sequence Diagrams
 #### Admin
-![Admin](University_Sequence_Diagram_Admin.png)
+![Admin](files/University_Sequence_Diagram_Admin.png)
 
 #### Student
-![Student](University_Sequence_Diagram_Student.png)
+![Student](files/University_Sequence_Diagram_Student.png)
 
 #### Faculty
-![Faculty](University_Sequence_Diagram_Faculty.png)
+![Faculty](files/University_Sequence_Diagram_Faculty.png)
